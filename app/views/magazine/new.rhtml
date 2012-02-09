@@ -1,0 +1,125 @@
+ <script language>
+  	function addcode(str)
+	{
+		document.article_article_body.value +=  str;
+		return false;
+	}
+  </script>
+  <script language="javascript" type="text/javascript" src="../../tiny_mce/tiny_mce.js"></script>
+<script language="javascript" type="text/javascript">
+tinyMCE.init({
+	mode : "textareas",
+	plugins : "emotions",
+	theme : "advanced",
+	theme_advanced_buttons1 : "bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,undo,redo,link,unlink,emotions",
+	theme_advanced_buttons2 : "",
+	theme_advanced_toolbar_location : "top",
+	theme_advanced_toolbar_align : "left",
+	theme_advanced_path_location : "bottom",
+	extended_valid_elements : "a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]",
+	debug : false
+	
+	
+});
+</script>
+
+	<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;">
+	  <tr>
+		<td>
+	<div class="subheadingtwo">Create New Article</div></td>
+	  </tr>
+	</table>
+	<br />
+	
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2" >
+<tr><td colspan="3" align="center">
+ <span style="font-family:verdana; font-size:10px; font-weight:bold; color:#B92828; text-align:left;">
+ <%= error_messages_for 'article' %> </span>
+
+</td></tr>
+<% form_for :article, :url => {:action => 'create'}, :html => {:multipart => true} do  -%>
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Category </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td>
+			<table width="90%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			<td width="30%" align="left" class="regtext1">			
+			<select id="article_article_category_id" name="article[article_category_id]" , :class=>"inputtwo">			
+		    <option value="">Select Category</option>			
+           	<%= options_for_select(ArticleCategory.find(:all).collect{|p| [ p.title, p.id ]}) %>
+            </select></td>			
+            <td align = "left" class="subtext2">
+			<div id="time_div" >
+			<%= link_to_remote ("Add New Category", :update => "time_div",					
+		    :url => {:controller => 'magazine', :action => 'category_new' },
+			:before => "Element.show('spinner')",:success => "Element.hide('spinner')",				
+		    :title => "Click Here to Add New Category" ) %>
+		    <%= image_tag("spinner.gif",
+              :align => "absmiddle",
+              :border => 0,
+              :id => "spinner",
+              :style =>"display : none;" ) %>
+			</div>					
+			</td>
+			</tr></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td width="15%" align="left" >
+			<b >Title </b>
+			</td>
+			<td width="2%" align="center" >
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" >
+			<%= text_field :article, :article_title, :class=>"input" %>
+			</td>
+		</tr>
+			<tr>
+			<td width="15%" align="left" >
+			<b >Body </b>
+			</td>
+			<td width="2%" align="center" >
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" >
+			<textarea id="article_article_body" name="article[article_body]" cols="50" rows="10" ></textarea>
+			
+			
+			</td>
+		</tr>
+			<tr>
+			<td width="15%" align="left" >
+			<b >Image </b>
+			</td>
+			<td width="2%" align="center" >
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" >
+			<%= file_column_field 'article', 'article_image', :size => '30%' %>
+			</td>
+		</tr>
+		
+				
+			<tr>
+			<td width="15%" align="left" >
+			<b >Featured </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= radio_button :article, :featured, '1'%> Yes
+			<%= radio_button :article, :featured, '0'%>No
+			</td>
+		</tr>
+		<tr><td colspan="3">&nbsp;</td></tr>
+		<tr><td>&nbsp;</td><td colspan="2" align="left"><%= submit_tag 'Submit' , :class => 'commonbut'%><% end -%></td></tr>
+</table>
+

@@ -1,0 +1,98 @@
+
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;" >
+  <tr>
+    <td>
+
+
+<div class="subheadingtwo">Article Details</div>
+ <br/>
+ 
+	</td>
+  </tr>
+</table><br />
+
+<br />
+
+
+	
+
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+		<tr>
+			<td width="15%" align="left" >
+			<b >Title </b>
+			</td>
+			<td width="2%" align="center" >
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" >
+			<%= (@article.article_title).humanize if !@article.article_title.nil? %> 
+			</td>
+		</tr>
+
+		<tr>
+			<td width="15%" align="left" >
+			<b >Category </b>
+			</td>
+			<td width="2%" align="center" >
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" >
+			<%= @article.article_category.title if !@article.article_category_id.nil?%> 
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="left" >
+			<b >Description</b>
+			</td>
+			<td width="2%" align="center" >
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" >
+			<%= @article.article_body %> 
+			</td>
+		</tr>
+				<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Image</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<% if @article.article_image.blank?%>No Image<% else %><%= image_tag (url_for_file_column('article', "article_image","main")) %><% end %>
+			</td>
+		</tr>
+				<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Featured</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<% if @article.featured==1 %>Yes<% else %>No<% end %>
+			</td>
+		</tr>
+
+
+
+
+				
+				<tr><td colspan="3">&nbsp;</td></tr>
+ 		<tr>
+			<td width="15%" align="center" class="regtext1">
+			<%= button_to "Back", {:controller => 'magazine', :action => 'index'}, :class => 'commonbut'%>
+		
+			</td>
+			<td width="2%" align="center" class="regtext1">&nbsp;
+			 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= button_to "Edit", { :action => 'edit', :id => @article }, :class => 'commonbut'%>
+			
+			</td>
+		</tr>
+
+</table>
+<br/><br/>
+</body>

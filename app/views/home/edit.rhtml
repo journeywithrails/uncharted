@@ -1,0 +1,108 @@
+<div class="breadCrumb">
+  <span><%= @profile.name %>'s Profile  
+  &raquo;</span>
+</div>
+
+<!-- main content -->
+<div class="mainContent">
+<table width="95%" height="250px;" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+  <td width="20%" height="250px;" valign="top">
+ 
+  <a href="<%= user_profile_url(:user=>session[:user].id) %>">View Profile</a>   
+  <div >
+  <p>	
+  <% form_for :profile,:url =>{:controller => 'home', :action =>'update', :id =>  @profile.user_id }, :html => {:multipart => true} do  %>
+  <% if @profile.profile_image.blank? %>
+  <%= image_tag ("/images/temp-photo.gif"),:style => "height:250px;"%>
+  <% else %>
+  <%= image_tag (url_for_file_column('profile', "profile_image","main")) %>
+  <% end %>
+         <%= file_column_field 'profile', 'profile_image', :size => '20%' %>
+        <input type="submit" onclick="loadingImg();" value="Go" />
+       <% end %>
+  </p>
+  </div>  
+  </td>
+  
+  <td width="5%">&nbsp;</td>
+  
+  <td>
+  <div class="profile">
+  
+    <label class="user"> <img alt="" src="/images/user_images/online.gif" /></label>
+    <span class="options">Edit Your Profile</span>
+	
+	
+    <span class="options">
+	
+	 <% if session[:user].id != @profile.user_id %>
+     <% user = UserNetwork.find(:first, :conditions=>["(user_id LIKE ? AND friend_id LIKE ?) OR(friend_id LIKE ? AND user_id LIKE ?) ",session[:user].id,@profile.user_id,session[:user].id,@profile.user_id]) %>
+	<% if !user %>
+    <img alt="" src="/images/user_images/connect.gif" /> 		  
+	<%= link_to "Send Network Request to this Member", :action => 'send_request', :id => @profile.user_id %>		 
+   &nbsp;&nbsp;
+    <% end %>
+	<% end %>	        
+      </span>
+	   <% form_for :profile, :url => {:controller => 'home', :action => 'update', :id => @profile.user_id }, :html => {:multipart => true} do  %>
+ <label for="profile[name]">Name :</label>
+        <span><input type="text" name="profile[name]" value="<%= @profile.name %>" id="name" /></span>
+		<span> <font color="#FF0000" ><%= error_message_on :profile, :name %></font></span>
+        <label for="profile[primary_residence]" >Current Primary Residence :</label>
+        <span><input type="text" name="profile[primary_residence]" value="<%= @profile.primary_residence%>" id="primary_residence" style="width:80%;" /> </span>
+		<span> <font color="#FF0000" ><%= error_message_on :profile, :primary_residence  %></font></span>
+		
+        <label for="profile[birthday]"> Birthday :</label>
+		<span><input type="text" name="profile[birthday]" value="<%= @profile.birthday%>" id = "birthday" />		
+		&nbsp;&nbsp; <input name="image" type="image" id='button1' alt="Select Date" src="/images/cal.gif">	
+		<span> <font color="#FF0000" ><%= error_message_on :profile, :birthday %></font></span>	
+		<script type="text/javascript">
+		var cal = new Zapatec.Calendar.setup({		
+		inputField:"birthday",
+		ifFormat:"%Y-%m-%d",
+		button:"button1",
+		showsTime:false
+		});		
+	  </script></span>
+	
+	
+	
+        <label for="places_lived">Places I've lived :</label>
+        <span><input type="text" name="profile[places_lived]" value="<%= @profile.places_lived %>" style="width:99%;" /></span>
+		<span> <font color="#FF0000" ><%= error_message_on :profile, :places_lived %></font></span>
+		
+        <label for="places_traveled">A few of the places I've traveled to :</label>
+        <span><input type="text" name="profile[places_traveled]" value="<%= @profile.places_traveled%>" style="width:99%;" /></span>
+		<span> <font color="#FF0000" ><%= error_message_on :profile, :places_lived %></font></span>
+		
+        <label for="places_traveled">Personal Interests :</label>
+        <span><textarea name="profile[personal_interests]" style="width:99%;height:50px;"><%= @profile.personal_interests%></textarea></span>
+		<span> <font color="#FF0000" ><%= error_message_on :profile, :personal_interests %></font></span>
+		
+        <label for="work_life">Work Life :</label>
+        <span><textarea name="profile[work_life]" style="width:99%;height:50px;"><%= @profile.work_life%></textarea></span>
+		<span> <font color="#FF0000" ><%= error_message_on :profile, :work_life %></font></span>
+		
+        <label>Plans for the Future :</label>
+        <span><textarea name="profile[future_plans]" style="width:99%;height:50px;"><%= @profile.future_plans%></textarea></span>
+		<span> <font color="#FF0000" ><%= error_message_on :profile, :future_plans %></font></span>
+		
+        <span style="text-align:right;"><input type="submit" value="Update Profile" /></span>
+      <% end %>
+    </div>
+	
+</td>
+  </tr>
+</table>		
+	
+    <div class="clearer">
+	</div>
+    
+      <div class="pageBottom dotted">
+        <br />
+        <span>Do you have a friend that you think would be a valuable addition to our community? SEASONED ADVENTURER is an invitation-only, private social network, but if you would like to suggest someone to be reviewed for possible membership, please 
+		<%= link_to 'suggest a member',:controller =>'home', :action => 'invite_friend' %>.</span>
+      </div>
+      </div>      
+    </div>

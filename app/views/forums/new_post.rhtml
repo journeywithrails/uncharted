@@ -1,0 +1,98 @@
+<script>
+function test()
+{
+  if(document.reg.subject.value=="")
+  {
+  alert("Please Enter Subject for this Post");
+  document.reg.subject.focus();
+  return false;
+  }
+  if(document.reg.content.value=="")
+  {
+  alert("Please enter Content for this post");
+   document.reg.content.focus();
+  return false;
+  }
+
+  return true; 
+}
+  
+
+</script>
+
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;" class="inerfontkicolor">
+  <tr>    <td><div class="subheadingtwo">Create New category</div>	</td>  </tr>
+   <tr><td style="padding-left:45px;">
+   <%= link_to "Categories >>", :action => "list_categories"%>
+    <%= link_to "#{@forum_category.title}" + '>>', :action => 'posts', :id => @forum_category.id %>
+
+	<% if @forum_posts.forum_thread_id == 0 %> New Post <% else%> 
+	<% post_subject = ForumPost.find_by_forum_thread_id(@forum_posts.forum_thread_id)%>
+	 <%= link_to post_subject.subject, :action => 'reply_post', :id => @forum_posts.forum_thread_id %> >>
+	Post Reply<% end %></td></tr>
+  <tr><td>&nbsp;</td></tr> 
+  
+  
+</table><br />
+<% form_for :forum_posts,  :url => {:action => "create_post" , :id => @forum_category.id },:html=>{:name=>'reg',:onsubmit=>'return test()'} do  %>
+
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2" >
+
+           <%= hidden_field 'forum_posts', 'forum_category_id' %>
+	       <%= hidden_field 'forum_posts', 'forum_thread_id' %>
+			<td width="15%" align="left" class="regtext1">
+			<b >Subject</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:</b> 
+			</td>			
+			<td width="30%" align="left" class="regtext1">
+						
+						<% if @forum_posts.forum_thread_id == 0 %>
+			<%= text_field 'forum_posts', 'subject' ,:id=>'subject' %>
+			<% else%> 
+			 <%= post_subject.subject %>
+			  <%= hidden_field 'forum_posts', 'subject', :value => post_subject.subject %>
+			<% end %>
+			</td>
+			
+		</tr>
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :forum_category, :title %>
+					 </font></td>
+					</tr>
+
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Content </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area 'forum_posts', 'content' ,:class=> 'textarea' ,:id=>'content'%>
+			</td>
+		</tr>
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :forum_category, :description %>
+					 </font></td>
+					</tr>
+		
+
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :forum_category, :active %>
+					 </font></td>
+					</tr>
+		
+		
+				
+						
+<tr>
+<td width="15%"><%= link_to image_tag('/images/cancel_button.jpg'), {:controller => 'forums', :action => 'posts', :id => params[:id] }%></td>
+
+<td colspan="2" align ="left"> <%= submit_tag 'Submit', :class => 'commonbut' %> </td></tr>
+		
+		
+	
+</table><% end %>
+

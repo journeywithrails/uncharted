@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Seasoned Adventurer</title>
+<link href="../../../../../Documents and Settings/hai/Desktop/web/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<%= stylesheet_link_tag 'newadmin' %>
+<%= javascript_include_tag 'login' %> 
+<body>
+<% form_for :admin,  :url => { :controller => :admin ,:action => :login}, 
+                              :html => {:name=> 'appl_form', :onSubmit=>'return valid();'} do  %>	
+<table align="center" width="735" height="355px" border="0" cellspacing="0" cellpadding="0" style="padding-top:100px;">
+  <tr>
+    <td>
+	<table width="735" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="253px" style="background:url(../images/login-left.gif); width:253px; height:355px; background-repeat:no-repeat;"></td>
+        <td style="background:url(../images/bg-login.gif); background-repeat:repeat-x;" width="458px" valign="top">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="58px" colspan="3"></td>
+            </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right" style="background:url(../images/bg-loginmain.gif); width:243px; height:230px; background-repeat:no-repeat;" valign="top">
+			<table width="243" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td height="90px">&nbsp;</td>
+              </tr>
+              <tr>
+                <td>
+				
+				<table align="center" width="205" border="0" cellspacing="0" cellpadding="0">
+			                 <tr>
+                    <td height="20px" colspan="3" align="left"><% if flash[:notice] -%>
+ <div  style ="color:#ff0000; font-family:arial; font-size:12px; text-align:center;"> <%= flash[:notice] %></div>  <% end %>
+<% if flash[:login_confirmation] %>
+<div  style ="color:#ff0000; font-family:arial; font-size:12px; text-align:center;"><%= flash[:login_confirmation] %></div>
+<% end %></td>
+                    </tr>
+                  <tr>
+                    <td width="70" height="30px" align="left">Email ID</td>
+                    <td align="center" width="20">:</td>
+                    <td align="left"><input class="usernamepassword" name='email' value="Email Address" id="email" type="text" onKeyUp="if(event.keyCode==13) showOptions();" onFocus="if(this.value=='Email Address') this.value='';" onBlur="if(this.value=='') this.value='Email Address';" /></td>
+                  </tr>
+                  <tr>
+                    <td align="left" height="30px">Password</td>
+                    <td align="center">:</td>
+                    <td align="left"><input class="usernamepassword" name='password' value="Password" id="password" type="password" onKeyUp="if(event.keyCode==13) showOptions();" onFocus="if(this.value=='Password') this.value='';" onBlur="if(this.value=='') this.value='Password';" /></td>
+                  </tr>
+                  <tr>
+                    <td height="20px" colspan="3" align="left">&nbsp;</td>
+                    </tr>
+                  <tr>
+                    <td align="left" height="25px">&nbsp;</td>
+                    <td align="center">&nbsp;</td>
+                    <td align="left" height="30px">
+					<input type="image" src="../images/but-login.gif" width="83" height="23" >
+					</td>
+                  </tr>
+                  
+                </table></td>
+              </tr>
+              
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+            </table></td>
+            <td width="30px"></td>
+          </tr>
+        </table></td>
+        <td width="24px" bgcolor="#ffffff"></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<% end %>
+</body>
+</html>

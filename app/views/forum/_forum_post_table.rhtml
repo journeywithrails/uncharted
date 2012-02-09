@@ -1,0 +1,27 @@
+     <% admin = is_admin? -%>
+      <tr>
+      	<th>Started</th>
+        <th>Subject</th>
+        <th>Posted By</th>
+        <% if admin -%>
+        <th colspan="2">Options</th>
+        <% end -%>
+      </tr>
+      <% if posts -%>
+      <% for post in posts -%>
+      <tr class="<%= cycle('row-a', 'row-b') -%>">
+      	<td><%= post.created_at.gmtime.strftime('%B %d, %Y') %></td>
+      	<td><a href=""><%= post.subject %></a></td>
+      	<td><%= post.user.login %></td>
+      	<% if is_admin? -%>
+      	<td><a href="#">edit</a></td>
+      	<td><a href="#">delete</a></td>
+      	<% end -%>
+      </tr>
+      <% end -%>
+      <% else -%>
+      <tr>
+        <td style="text-align:center">No posts to display</td>
+      </tr>
+      <% end -%>
+      

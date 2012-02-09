@@ -1,0 +1,47 @@
+<div class="breadCrumb">
+  <span> Mailbox &raquo; <a href="/<%=session[:user].id%>/mail/<%= @mail_box %>"><%= @mail_box %></a> &raquo;</span>
+</div>
+<!-- main content -->
+<div class="mainContent">
+  <% if flash[:notice] -%>
+  <span class="flash_notice" id="flash_notice"><%= flash[:notice] %></span>
+  <% end -%>
+  <p class="mailLinks"><a href="/<%=session[:user].id %>/mail/inbox">Inbox</a> | <a href="/<%=session[:user].id %>/mail/sent">Sent Mail</a> | <a href="/<%=session[:user].id %>/mail/compose">Compose Mail</a></p>
+  <div class="clearer"></div>
+  <div class="usermail floaterLeft">
+    <span class="title" align="center"><strong> <% if @mail_box == "sent"%>sent mail<% else %><%= @mail_box %><% end %></strong></span>
+    <table id="mail_list">
+	<% if @message_list.blank?%>
+	<table width="98%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <% if @mail_box== "inbox" %>
+    <td bgcolor="#999999" align="center" height="100px;">There are no messages in your Inbox.</td>
+	<% else %>
+	<td bgcolor="#999999" align="center" height="100px;">There are no messages in your Sent mails.</td>
+	<% end %>
+  </tr>
+</table>
+	<% else %>
+      <%= render :partial=>"mail_table", :locals=>{:mail_box=>@mail_box, :message_list=>@message_list} %>
+    <% end %>
+    </table>
+    <% if @mail_box == "inbox" || "sent" -%>
+	<div class="mainContent" align="center">
+    <%= will_paginate @message_list %>
+	</div>
+    <% end -%> 
+  </div>
+  <div class="usermail floaterRight" id="usermail_right">
+      <% if @message -%>
+      <%= render :partial=>"show_message", :locals=>{:mail_box => @mail_box, :message=>@message}%>
+      <% end -%>
+  </div>
+  <div class="clearer"></div>	
+  <div class="pageBottom dotted">
+    <br />
+    <span>Do you have a friend that you think would be a valuable addition to our community? SEASONED ADVENTURER is an invitation-only, private social network, but if you would like to suggest someone to be reviewed for possible membership, please 
+	<%= link_to 'suggest a member',:controller =>'home', :action => 'invite_new_member' %>.</span>
+  </div>   
+</div>
+
+      

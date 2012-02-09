@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+        "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Seasoned Adventurer &#8211; Private social network for adventurous people over 50.</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen"/>
+  <script>
+function valid()
+{
+  if(document.getElementById('email').value == "Email ID")
+  { 
+  	alert("Please Enter Email");
+	document.getElementById('email').focus();
+	return false;
+	}
+	
+	var str = document.getElementById('email').value ;
+    var re = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,3}$/;
+    if (!str.match(re))
+	{
+     alert("Wrong Email Format");
+		document.getElementById('email').value ="";
+		document.getElementById('email').focus();
+        return false;
+    }
+	return true;
+}
+
+</script>
+  </head>
+  <body>
+   <div class="main">
+    <div class="border">
+    <!-- header -->
+     <div class="header">
+      <div class="logo">
+        <img src="/images/logo_lrg_seasoned-adventure.gif" alt="Seasoned Adventurer &#8211; Private social network for adventurous people over 50" />
+      </div>
+      <div class="clearer"></div>
+     </div>
+     
+     <div class="headerNav">
+     <span class="cityRoom">&raquo; CityRoom Press</span>
+     <div class="clearer"></div>
+     </div>
+     <!-- main content -->
+     <div class="content">
+      <div class="about">
+       <ul>
+        <li class="title">&nbsp;ABOUT SEASONED ADVENTURER&raquo;</li>
+        <li class="aboutText">
+          &nbsp;&nbsp;&nbsp;SEASONED ADVENTURER is a small and select online community of adventurous individuals over fifty years of age. Our members come from various cultures, speak many different native languages and have primary residences at all ends of the globe, yet they share in like-minded interests such as international travel, active living, fine food and wine, art and music, and intellectual topics.<br /><br />
+          &nbsp;&nbsp;&nbsp;SEASONED ADVENTURER is a place where members can keep in touch as friends; discuss life, plan meetings and events, and share information and offer services such as home exchanges and vacation rentals.
+        </li>
+       </ul>
+      </div>
+      <!-- user login -->
+      <div class="login">
+       <span class="loginTitle">Login Problem &raquo;</span>
+       <span class="loginText">Please enter your Email id   and click Go.<br /> </span>
+          			<% if flash[:forgotten_notice] %>
+<div id="error" style="text-align:center; color:#EA1515;"><%= flash[:forgotten_notice] %></div>
+<% end %>
+	   <div class="loginCon">
+        <div class="loginBorder">
+		
+		<% form_for :user,  :url => { :controller => :home ,:action => :login_problem}, 
+                              :html => {:name=> 'appl_form', :onSubmit=>'return valid();'} do  %>	
+       
+		
+		
+          <table border="0" width="80%" class="loginForm">
+            <tr><td colspan="2">&nbsp;</td></tr>
+            <tr>
+              <td class="fieldName" width="50%"><label>Email ID  :</label></td>
+              <td class="field" width="50%"><input class="usernamepassword" name='email' value="Email ID" id="email" type="text" onKeyUp="if(event.keyCode==13) showOptions();" onFocus="if(this.value=='Email ID') this.value='';" onBlur="if(this.value=='') this.value='Email ID';" /></td>
+            </tr>
+            <tr>
+              <td class="fieldName" width="50%">&nbsp;</td>
+              <td class="field" width="50%"><input type="submit" name="submit" value="Go!" /></td>
+            </tr> 
+			 <tr><td colspan="2">&nbsp;</td></tr>
+          </table>
+		  <% end %>
+         </form>
+		
+        </div> 
+       </div>
+         <span class="loginProb">
+	   <%= link_to "Sign In!", :action => 'login' %></span>
+       <div class="clearer"></div>
+      </div>
+      <!--end user login -->
+      
+      <div class="clearer"></div>
+     </div>
+     <!-- end content -->
+     <div class="regInfo dotted">
+      SEASONED ADVENTURER membership is free but selective. To request an application, contact <a href="mailto:info@seasonedadventurer.com">info@seasonedadventurer.com</a>. Applicants must be fifty years of age or older.
+     </div>
+    </div> 
+   </div>
+   <div class="copyright">Copyright &copy; 2007 - CityRoom Press - All Rights Reserved</div>
+  </body>
+</html>
+

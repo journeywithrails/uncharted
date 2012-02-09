@@ -1,0 +1,59 @@
+/* CSS Document */
+body{
+	background:url(../images/bg.gif);
+	background-repeat:repeat;
+	margin:0px;
+	padding:0px;
+	font-family:Tahoma;
+	font-size:11px;
+	color:#6c6c6c;
+	}
+	
+img{
+	border:0px;
+	}
+.input{
+	border:2px solid #f1eeee; 
+	background:url(../images/bg-input.gif); 
+	height:20px; 
+	background-repeat:repeat-x; 
+	width:180px;
+	}	
+	
+	
+#leftbar 
+	{
+	font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	text-align:left;
+	}
+#leftbar ul
+	{
+	margin:0px;
+	padding:0px;
+	padding-left:15px;
+	}
+#leftbar ul li
+	{
+	list-style:none;
+	height:18px;
+	width:140px;
+	background:url(../images/arrow.gif);
+	background-repeat:no-repeat;
+	line-height:18px;
+	padding-left:17px;
+	background-position:left center;
+	}
+#leftbar ul li a
+	{
+	text-decoration:none;
+	display:block;
+	color:#6c6c6c;
+	height:18px;
+	line-height:18px;
+	}
+#leftbar ul li a:hover
+	{
+	color:#cc2700;
+	display:block;
+	}

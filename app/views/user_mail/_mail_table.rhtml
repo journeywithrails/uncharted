@@ -1,0 +1,19 @@
+      <tr>
+        <th>Date:</th>
+        <th>Status:</th>
+        <% if mail_box == "inbox" -%>
+        <th>From:</th>
+        <th>Subject:</th>
+        <th>Reply:</th>
+        <% else -%>
+        <th>To:</th>
+        <th>Subject:</th>
+        <% end -%>
+      </tr>
+      <% if message_list -%>
+      <%= render :partial=>"mail_list", :collection=>message_list, :locals=>{:mail_box => mail_box}%>
+      <% else -%>
+      <tr>
+        <td style="text-align:center">No messages to display</td>
+      </tr>
+      <% end -%>

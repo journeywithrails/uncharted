@@ -1,0 +1,74 @@
+
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;">
+ <tr><td><div class="ajax_subheadingtwo" >Comment Details</div></td></tr>
+  
+</table><br />
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+		
+				<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Posted By</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%=@feedback.user.email%>
+		 
+			</td>
+		</tr>
+		
+		
+		
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Subject </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%=@feedback.Subject%> 
+			
+			</td>
+		</tr>
+        		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Description</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @feedback.Description%> 
+			</td>
+		</tr>
+
+		
+		
+		
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Date</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= (@feedback.date).to_date.to_s(:long) %>
+			</td>
+		</tr> 
+						
+				<tr><td colspan="3">&nbsp;</td></tr>
+				<tr>
+			<td width="15%" align="right" class="regtext1">
+			<%#= button_to "Back", {:controller => 'feed_back', :action => 'list'}, :class => 'commonbut'%>
+			
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			
+			</td>
+		</tr>
+		</table>

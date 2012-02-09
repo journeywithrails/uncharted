@@ -1,0 +1,57 @@
+<%= javascript_include_tag "boxover_products" %>
+
+<body class="baddingbadge">
+
+<% if @banner.blank? %>
+No Banners
+<% else %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+<tr><td><div class="subheadingtwo">List of Banner Images</div></td></tr>
+  <tr>
+  
+    <td align="left">Total number of Banners = <%= (@banner).size %></td>
+  </tr>
+</table><br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+    <td width="5%" align="center">SNo</td>
+    <td width="22%" align="center">Title</td>
+    <td width="14%" align="center">Updated on</td>
+    <td width="24%" align="center">ACTION</td>
+  </tr>
+  <% @count=0 %> 
+  <% for banner in @banner %>  
+  <% @count=@count+1%>
+
+  
+  <tr>
+    <td align="center"><%= @count %></td>
+
+    <td align="center"><%= banner.title%>
+	</td>
+
+    <td align="center"><%= (banner.edited_at).to_date.to_s(:long) %></td>
+    <td align="center">
+	<%= link_to image_tag("/images/show.png"),{:action => 'show', :id => banner }, :title => "Click Here View Banner"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-edit.gif"),{:action => 'edit', :id => banner }, :title => "Click Here to Edit Banner"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:action => "delete", :id => banner}, :title => "Click Here to Delete Banner",:confirm => "Are You Sure To Delete This News " %>
+	</td>
+  </tr>
+  <% end %>
+  
+</table>
+
+<% end %>
+<br/><br/>
+ <div style="float:right;padding-right:30px"> <%= button_to 'Create New Banner', {:action => 'new' }, :class => 'commonbut', :style=>'width:150px' %> </div>
+</body>
+</html>
+
+
+
+
+

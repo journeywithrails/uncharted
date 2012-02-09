@@ -1,0 +1,76 @@
+<!-- user login -->
+      <div class="login">
+       <span class="loginTitle">Member Registration &raquo;</span>
+       <span class="loginText">Please Enter logon details and click Submit. </span>
+       <% if flash[:notice] %><span id="loginFlash" class="loginFlash"><%=flash[:notice]%></span><%end%>
+	    <div class="loginCon">
+        <div class="loginBorder">
+		
+		<% form_for :user, :url => {:action => 'signin'} do |f| -%>
+       
+		
+		
+          <table border="0" width="80%" class="loginForm">
+		  
+            <tr>
+              <td class="fieldName" width="50%"><label>Username :</label></td>			  
+              <td class="field" width="50%">
+			  <%= f.text_field :username %>			  
+			  </td>
+            </tr>
+			
+			     <tr>
+              <td  width="50%" colspan="2" align="center"><font color="#FF0000" >
+			  <%= error_message_on :user, :username %>	</font>	  
+			  </td>
+            </tr>
+			        <tr>
+              <td class="fieldName" width="50%"><label>Email ID :</label></td>			  
+              <td class="field" width="50%">
+			  <%= f.text_field :email %>		  
+			  </td>
+            </tr>
+			
+			     <tr>
+              <td  width="50%" colspan="2" align="center"><font color="#FF0000" >
+			 <%= error_message_on :user, :email %>	</font>	  
+			  </td>
+            </tr>
+			        <tr>
+              <td class="fieldName" width="50%"><label>Password :</label></td>			  
+              <td class="field" width="50%">
+			  <%= f.password_field :password %>		  
+			  </td>
+            </tr>
+			
+			     <tr>
+              <td  width="50%" colspan="2" align="center"><font color="#FF0000" >
+			   <%= error_message_on :user, :password %>	</font>	  
+			  </td>
+            </tr>
+			        <tr>
+              <td class="fieldName" width="50%"><label>Confirm Password :</label></td>			  
+              <td class="field" width="50%">
+			  <%= f.password_field :password_confirmation %>		  
+			  </td>
+            </tr>
+			
+			     <tr>
+              <td  width="50%" colspan="2" align="center"><font color="#FF0000" >
+			  <%= error_message_on :user, :password_confirmation %>		</font>  
+			  </td>
+            </tr>
+
+            <tr>
+              <td class="fieldName" width="50%">&nbsp;</td>
+              <td class="field" width="50%"><input type="submit" name="submit" value="Submit!" /></td>
+            </tr> 
+          </table>
+		  <% end %>
+        
+        </div> 
+       </div>
+
+       <div class="clearer"></div>
+      </div>
+      <!--end user login -->

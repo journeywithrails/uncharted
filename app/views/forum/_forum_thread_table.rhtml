@@ -1,0 +1,36 @@
+      <% if threads.length !=0 -%>
+      <tr>
+      	<th>Started</th>
+        
+		<th>Subject</th>
+        <th>Posted By</th>
+        <th>RE:</th>
+
+      </tr>
+      
+      <% for thread in threads -%>
+      <tr class="<%= cycle('row-a', 'row-b') -%>">
+      	<td><%= thread.forum_posts.first.created_at.gmtime.strftime('%B %d, %Y')%></td>
+      	<% post_path = show_forum_posts_path(:category=>category.title.gsub(' ', '_'), :id=>thread.id, :thread=>thread.forum_posts.first.subject.gsub(' ', '_') )-%>
+        <!--<td>
+       <%= link_to_remote thread.forum_posts.first.subject,
+        	    {:url=>post_path},
+        	    {:href=>post_path}%>
+        </td>-->
+      	<td><a href="<%= post_path %>"><%= thread.forum_posts.first.subject %></a></td>
+      <td><a href="<%= user_profile_url(:user=>thread.user.id) %>"><%= thread.user.First_Name %></a></td>
+      	<td><%= thread.forum_posts.length - 1 %></td>
+
+      </tr>
+      <% end -%>
+      <% else -%>
+	  <tr><td>&nbsp;</td></tr>
+      <tr>
+        <td style="text-align:center">
+		<table width="98%" border="0" cellspacing="0" cellpadding="0">
+		 <td bgcolor="#999999" align="center" height="80px;">
+		No Posts to display
+		</td></tr></table>
+		</td>
+      </tr>
+      <% end -%>

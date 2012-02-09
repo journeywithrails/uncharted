@@ -1,0 +1,91 @@
+
+
+<body class="baddingbadge">
+<% form_for :events,  :url => { :action => "list" } do %>
+ <table   width="98%" border="0" cellspacing="0" cellpadding="0" align="right"  >
+  <tr>
+    <td align="left"> <select name="event_status" onChange="this.form.submit();" >
+  <option value="">Select the Events</option> 
+ <option value="1">Approved</option> 
+ <option value="0">Unapproved</option> 
+  <option value="2">All</option> 
+</select></td>
+  </tr>
+</table>
+<br/>
+<% end %>
+<% if @events.blank?%>
+
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+  <tr>
+    <td align="left">There are no Events.</td>
+  </tr>
+</table><br />
+
+<% else %>
+
+
+
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+<tr><td><div class="subheadingtwo">List of Events</div></td></tr>
+  <tr>
+    <td align="left">Total number of <% if params[:event_status] == '1' %> Approved <% elsif params[:event_status] == '0'%> Unapproved <% elsif params[:event_status] == '2'%> All <% else %> Unapproved <% end %> Events= <%= @total %></td>
+  </tr>
+</table><br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+      
+    <td width="5%" align="center">SNo</td>
+    <td width="18%" align="center">Date</td>
+    <td width="22%" align="center">Location </td>
+    <td width="14%" align="center">Status</td>   
+    <td width="24%" align="center">ACTION</td>
+  </tr>
+  <% @count=0 %> 
+  <% for event in @events %>  
+  <% @count=@count+1%>
+  
+  <tr>
+     
+    <td align="center"><%= @count %></td>
+    <td align="center"><%= (event.event_date).to_date.to_s(:long) %></td>
+    <td align="center"><%= event.event_location %></td>
+    <td align="center"><% if event.suggestion == 0 %>Unapproved<% elsif  event.suggestion == 1 %>Approved<% end %></td>
+    
+    <td align="center">
+	<% if event.suggestion == 0 %>
+	<%= link_to image_tag("/images/approve.gif"),{:action => 'admin_approve', :id => event }, :title => "Click Here to Approve this Event."%>&nbsp;
+	<% else %>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<% end %>
+	<%= link_to image_tag("/images/show.png"),{:action => 'show', :id => event }, :title => "Click Here to View Event Details"%>	
+	&nbsp;
+	<%= link_to image_tag("/images/but-edit.gif"),{:action => 'edit', :id => event }, :title => "Click Here to Edit Event details"  %>	
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:action => "delete", :id => event}, :title => "Click Here to Delete Event",:confirm => "Are You Sure to Delete This Event" %>
+	
+	</td>
+  </tr>
+  <% end %>
+  
+</table>
+<% end %>
+
+	<div class="paginate" align="center">
+    <%= will_paginate (@events) %>
+	</div>
+
+
+
+
+<br/><br/>
+ <div style="float:right;padding-right:30px"> <%= button_to 'Add New Event', {:action => 'new' }, :class => 'commonbut' %> </div>
+</body>
+</html>
+
+
+
+
+
+
+

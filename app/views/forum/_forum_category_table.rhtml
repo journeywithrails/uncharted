@@ -1,0 +1,33 @@
+      <% if categories.length !=0 -%>
+      <tr>
+        <th>Category</th>
+        <th>Posts</th>
+
+      </tr>
+     
+      <% for category in categories -%>
+      <tr class="<%= cycle('row-a', 'row-b') -%>">
+      	<td><a href="<%= forum_category_path(:category=>category.title.gsub(' ', '_'))%>"><%= category.title.titleize %></a></td>
+      	<td>
+	    <% thread=ForumThread.find(:all,:conditions => ['forum_category_id LIKE ?',category.id]) %>
+		<% if !thread.blank? %>
+		<%= thread.size %>
+		<% else %>
+		<%= 0 %>
+		<% end %>
+		</td>
+
+      </tr>
+      <% end -%>
+      <% else -%>
+	  <tr><td></td></tr>
+      <tr>
+        <td style="text-align:center">
+		<table width="98%" border="0" cellspacing="0" cellpadding="0">
+		 <td bgcolor="#999999" align="center" height="80px;">
+		No categories to display
+		</td></tr></table>
+		
+		</td>
+      </tr>
+      <% end -%>

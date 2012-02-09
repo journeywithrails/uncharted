@@ -1,0 +1,27 @@
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;">
+<tr><td><div class="subheadingtwo">Edit Event</div></td></tr>
+  
+</table><br />
+<% form_tag :action => 'update', :id => @event do %>
+  <%= render :partial => 'form' %>
+  <table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+ 
+ 
+ <tr>
+<td width="15%" height="25px"><%= link_to image_tag('/images/cancel_button.jpg'), {:controller => 'event', :action => 'list' }%></td>
+<td colspan="2" align ="left" height="25px"><%= submit_tag 'Submit', :class => 'commonbut' %><% end -%></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</table> 
+
+
+
+

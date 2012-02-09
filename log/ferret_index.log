@@ -1,0 +1,115 @@
+# Logfile created on Tue Jan 22 04:04:46 -0600 2008 by /
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+rebuild index: [Article(id: integer, article_category_id: integer, user_id: integer, article_title: string, article_body: text, article_image: string, featured: integer, created_at: datetime, updated_at: datetime)]
+reindexing model Article
+reindex model Article : 100.00% complete : 0.01 secs to finish
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+query: featured:test article_body:test article_category_id:test user_id:test created_at:test article_image:test updated_at:test article_title:test
+stored_fields: 
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+query: featured:sfs article_body:sfs article_category_id:sfs user_id:sfs created_at:sfs article_image:sfs updated_at:sfs article_title:sfs
+stored_fields: 
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+query: +(featured:good article_body:good article_category_id:good user_id:good created_at:good article_image:good updated_at:good article_title:good) +(featured:article article_body:article article_category_id:article user_id:article created_at:article article_image:article updated_at:article article_title:article)
+stored_fields: 
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/user
+rebuild index: [User(id: string, username: string, email: string, crypted_password: string, salt: string, created_at: datetime, updated_at: datetime, remember_token: string, remember_token_expires_at: datetime, user_type: string)]
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/user
+rebuild index: [User(id: string, username: string, email: string, crypted_password: string, salt: string, created_at: datetime, updated_at: datetime, remember_token: string, remember_token_expires_at: datetime, user_type: string)]
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/user
+rebuild index: [User(id: string, username: string, email: string, crypted_password: string, salt: string, created_at: datetime, updated_at: datetime, remember_token: string, remember_token_expires_at: datetime, user_type: string)]
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/user
+rebuild index: [User(id: string, username: string, email: string, crypted_password: string, salt: string, created_at: datetime, updated_at: datetime, remember_token: string, remember_token_expires_at: datetime, user_type: string)]
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/user
+rebuild index: [User(id: string, username: string, email: string, crypted_password: string, salt: string, created_at: datetime, updated_at: datetime, remember_token: string, remember_token_expires_at: datetime, user_type: string)]
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/user
+rebuild index: [User(id: string, username: string, email: string, crypted_password: string, salt: string, created_at: datetime, updated_at: datetime, remember_token: string, remember_token_expires_at: datetime, user_type: string)]
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/user
+rebuild index: [User(id: string, username: string, email: string, crypted_password: string, salt: string, created_at: datetime, updated_at: datetime, remember_token: string, remember_token_expires_at: datetime, user_type: string)]
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+query: article_image:sdfsd user_id:sdfsd created_at:sdfsd article_title:sdfsd updated_at:sdfsd featured:sdfsd article_body:sdfsd article_category_id:sdfsd
+stored_fields: 
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/user
+rebuild index: [User(id: string, username: string, email: string, crypted_password: string, salt: string, created_at: datetime, updated_at: datetime, remember_token: string, remember_token_expires_at: datetime, user_type: string)]
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/user
+rebuild index: [User(id: string, username: string, email: string, First_Name: string, Last_Name: string, Surname: string, Gender: string, Mobile_No: integer, primary_residence: text, City: string, State: string, Country: string, birthday: date, places_lived: text, places_traveled: text, personal_interests: text, places_to_see: text, work_life: text, future_plans: text, profile_image: string, company: string, school: string, industry: string, year_graduation: string, crypted_password: string, salt: string, created_at: datetime, updated_at: datetime, logged_in: integer, remember_token: string, remember_token_expires_at: datetime, user_type: string, status: integer, network: integer)]
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+query: created_at:fh featured:fh article_title:fh user_id:fh article_category_id:fh article_body:fh updated_at:fh article_image:fh
+stored_fields: 
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+query: article_title:ipod article_category_id:ipod created_at:ipod article_body:ipod article_image:ipod updated_at:ipod user_id:ipod featured:ipod
+stored_fields: 
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+query: article_title:ipod article_category_id:ipod created_at:ipod article_body:ipod article_image:ipod updated_at:ipod user_id:ipod featured:ipod
+stored_fields: 
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+query: article_title:vcd user_id:vcd article_category_id:vcd created_at:vcd article_body:vcd article_image:vcd updated_at:vcd featured:vcd
+stored_fields: 
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+query: article_title:vcds user_id:vcds article_category_id:vcds created_at:vcds article_body:vcds article_image:vcds updated_at:vcds featured:vcds
+stored_fields: 
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article
+LocalIndex: ensure_index_exists at /home/mbma/railsapp/index/development/article

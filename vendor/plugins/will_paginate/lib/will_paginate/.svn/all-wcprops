@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/seasonedadventurer/!svn/ver/2/trunk/seasonedadventurer/vendor/plugins/will_paginate/lib/will_paginate
+END
+finder.rb
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/seasonedadventurer/!svn/ver/2/trunk/seasonedadventurer/vendor/plugins/will_paginate/lib/will_paginate/finder.rb
+END
+core_ext.rb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/seasonedadventurer/!svn/ver/2/trunk/seasonedadventurer/vendor/plugins/will_paginate/lib/will_paginate/core_ext.rb
+END
+collection.rb
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/seasonedadventurer/!svn/ver/2/trunk/seasonedadventurer/vendor/plugins/will_paginate/lib/will_paginate/collection.rb
+END
+view_helpers.rb
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/seasonedadventurer/!svn/ver/2/trunk/seasonedadventurer/vendor/plugins/will_paginate/lib/will_paginate/view_helpers.rb
+END

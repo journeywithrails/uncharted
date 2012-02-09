@@ -1,0 +1,135 @@
+<body class="baddingbadge">
+<%= stylesheet_link_tag 'style' %>
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;" >
+  <tr>
+    <td>
+
+
+<div class="subheadingtwo"><%= (@profile.First_Name).humanize if !@profile.First_Name.blank? %> &nbsp;Profile </div>
+ <br/>
+ 
+	</td>
+  </tr>
+</table><br />
+
+<br />
+
+
+	
+
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+
+<tr>
+<td width="32%"><b>Name</b></td>
+<td width="3%"><div align="center">:</div></td>
+<td width="40%"><%= @profile.First_Name if !@profile.First_Name.blank?  %> &nbsp;<%= @profile.Last_Name if !@profile.Last_Name.blank? %> </td>
+<td width="25%" rowspan="19" valign="top">
+<table width="175" he border="0" >
+<tr><td width="150" height="150" valign="top" ><% if @profile.profile_image.blank?%> <%= image_tag ("/images/temp-photo.gif"),:style =>'width:150px;height:150px' %><% else %><%= image_tag (url_for_file_column('profile', "profile_image","main"), :style =>'width:150px;height:150px') %><% end %>
+			</td>
+</tr>
+</table>
+
+</td>
+
+</tr>
+<tr>
+<td><b>Registered On </b></td>
+<td><div align="center">:</div></td>
+<td><%= (@profile.created_at).to_date.to_s(:long) if !@profile.created_at.blank?  %> </td>
+</tr>
+
+<tr>
+<td><b>Email</b></td>
+<td><div align="center">:</div></td>
+<td><%= @profile.email if !@profile.email.blank? %></td>
+</tr>
+
+<tr>
+<td><b>Gender</b></td>
+<td><div align="center">:</div></td>
+<td><%= @profile.Gender.humanize if !@profile.Gender.blank? %></td>
+</tr>
+
+
+<tr>
+<td><b>Date of Birth </b></td>
+<td><div align="center">:</div></td>
+<td><%= @profile.birthday.to_s(:long) if !@profile.birthday.blank? %></td>
+</tr>
+<tr>
+
+<td><b>Address</b></td>
+<td><div align="center">:</div></td>
+<td><%= @profile.primary_residence %></td>
+</tr>
+
+
+<tr>
+<td><b>City</b></td>
+<td><div align="center">:</div></td>
+<td><%=  @profile.City.humanize if !@profile.City.blank? %></td>
+</tr>
+<tr>
+
+<tr>
+<td><b>State</b></td>
+<td><div align="center">:</div></td>
+<td><%= @profile.State.humanize if !@profile.State.blank? %></td>
+</tr>
+
+<td><b>Country</b></td>
+<td><div align="center">:</div></td>
+<td><%=@profile.Country.humanize if !@profile.Country.blank?  %></td>
+</tr>
+
+
+<tr>
+<td><b>Industry</b></td>
+<td><div align="center">:</div></td>
+<td><%= @profile.industry %></td>
+</tr>
+
+
+  <tr>
+    <td><b>Places Lived</b></td>
+    <td ><div align="center">:</div></td>
+    <td ><%= @profile.places_lived %></td>
+  </tr>
+  <tr>
+    <td><b>Places Traveled</b></td>
+    <td><div align="center">:</div></td>
+    <td><%= @profile.places_traveled %></td>
+  </tr>
+  <tr>
+    <td><b>Places Interested</b></td>
+    <td><div align="center">:</div></td>
+    <td><%= @profile.personal_interests %></td>
+  </tr>
+  <tr>
+    <td><b>Work Life</b></td>
+    <td><div align="center">:</div></td>
+    <td><%= @profile.work_life %></td>
+  </tr>
+  <tr>
+    <td><b>Future Plans</b></td>
+    <td><div align="center">:</div></td>
+    <td><%= @profile.future_plans %></td>
+  </tr>
+  <tr>
+    <td colspan="3" height="8">&nbsp;</td>
+  </tr>
+  <tr><td width="32%" align="center" class="regtext1">
+				<%= button_to "Back", {:controller => 'user', :action => 'list'}, :class => 'commonbut'%>
+	
+			</td>
+			
+			<td width="3%" align="center" class="regtext1">&nbsp;</td>
+			<td width="65%" align="left" class="regtext1">
+			<%= button_to "Edit", { :controller => 'user', :action => 'profile_edit', :id => @profile }, :class => 'commonbut'%>			</td>
+  </tr>
+</table>
+<br />
+
+
+</body>

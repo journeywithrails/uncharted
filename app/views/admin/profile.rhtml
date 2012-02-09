@@ -1,0 +1,126 @@
+<body class="baddingbadge">
+<%= stylesheet_link_tag 'style' %>
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;" >
+  <tr>
+    <td>
+
+
+<div class="subheadingtwo"><%= (@profile.First_Name).humanize %> &nbsp;Profile </div>
+ <br/>
+ 
+	</td>
+  </tr>
+</table><br />
+
+<br />
+
+
+	
+
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Name </b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @profile.First_Name %> &nbsp;<%= @profile.Last_Name %></td>
+			
+			<td width="25%" rowspan="19" valign="top">
+<table width="175" he border="0" >
+<tr><td width="150" height="150" valign="top" ><% if @profile.profile_image.blank?%> <%= image_tag ("/images/temp-photo.gif"),:style =>'width:150px;height:150px' %><% else %><%= image_tag (url_for_file_column('profile', "profile_image","main"), :style =>'width:150px;height:150px') %><% end %>
+			</td>
+</tr>
+</table>
+
+</td>
+			
+		</tr>
+									<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Email</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @profile.email %>			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Gender </b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @profile.Gender %>			</td>
+		</tr>
+		
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Birthday</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @profile.birthday %>			</td>
+		</tr>
+				<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Residence Address</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @profile.primary_residence %>			</td>
+		</tr>
+		
+					<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >City</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @profile.City %>			</td>
+		</tr>	
+		
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >State</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @profile.State %>			</td>
+		</tr>
+		
+		
+							<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Country</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @profile.Country %>			</td>
+		</tr>
+	
+							<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Registered On</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= (@profile.created_at ).to_date.to_s(:long) if !@profile.created_at .blank?  %>		</td>
+		</tr>
+
+
+  <tr>
+    <td colspan="3" height="8">&nbsp;</td>
+  </tr>
+  
+  <tr><td width="32%" align="center" class="regtext1">
+				<%= button_to "Back", {:controller => 'admin', :action => 'list'}, :class => 'commonbut'%>
+	
+			</td>
+			
+			<td width="3%" align="center" class="regtext1">&nbsp;</td>
+			<td width="65%" align="left" class="regtext1">
+			<%= button_to "Edit", { :controller => 'admin', :action => 'profile_edit', :id => @profile }, :class => 'commonbut'%>			</td>
+  </tr>
+</table>
+<br/><br/>
+</body>

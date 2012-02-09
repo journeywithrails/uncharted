@@ -1,0 +1,216 @@
+/* CSS Document */
+body{
+	background:url(../images/bg.gif);
+	background-repeat:repeat;
+	margin:0px;
+	padding:0px;
+	font-family:Tahoma;
+	font-size:11px;
+	color:#6c6c6c;
+	}
+	
+img{
+	border:0px;
+	}
+	
+.usernamepassword{
+	border:2px solid #f1eeee; 
+	background:url(../images/bg-input.gif); 
+	height:20px; 
+	background-repeat:repeat-x; 
+	width:140px;
+	}
+	
+#leftbar 
+	{
+	font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	text-align:left;
+	}
+#leftbar ul
+	{
+	margin:0px;
+	padding:0px;
+	padding-left:15px;
+	}
+#leftbar ul li
+	{
+	list-style:none;
+	height:18px;
+	width:140px;
+	background:url(../images/arrow.gif);
+	background-repeat:no-repeat;
+	line-height:18px;
+	padding-left:17px;
+	background-position:left center;
+	}
+#leftbar ul li a
+	{
+	text-decoration:none;
+	display:block;
+	color:#6c6c6c;
+	height:18px;
+	line-height:18px;
+	}
+#leftbar ul li a:hover
+	{
+	color:#cc2700;
+	display:block;
+	}
+.footer
+{
+	font-family:Tahoma;
+	font-size:11px;
+	color:#6c6c6c;
+	}
+
+
+	.tableborder{
+	border:1px solid #d4c493; 
+	font-family:Tahoma;
+	font-size:12px;
+	color:#6c6c6c;
+	border-collapse:collapse;
+	}
+	.inerfontkicolor
+	{
+	font-family:Tahoma;
+	font-size:12px;
+	color:#6c6c6c;
+	}
+	.inerfontkicolor:hover{
+font-family:Tahoma;
+	font-size:12px;
+	color:#000000;
+}
+
+.subtext2{
+	font-family:Tahoma;
+	font-size:11px;
+	color:#646363;
+	}
+	
+	.textarea
+{
+width:200px;
+height:130px;
+border:#d3ec9c 1px solid;
+font-family:Georgia, "Times New Roman", Times, serif
+font-size:11px;
+font-weight:normal;
+padding-left:8px;
+color:#405b06;
+}
+.welcometext{font-family:Arial, Helvetica, sans-serif;
+font-size:24px;
+color:#FF9933;
+text-decoration:none;
+}
+
+
+
+.inputtwo{
+	border:1px solid #f1eeee; 
+	background-color:#ffffde;
+	height:22px; 
+	background-repeat:repeat-x; 
+	width:140px;
+	font-family:Tahoma;
+	font-size:11px;
+	color:#6c6c6c;
+	}
+
+.subheadingtwo{
+	font-family:Tahoma;
+	font-size:17px;
+	text-align:center;
+	color:#ee8701;
+	height:30px;
+	line-height:30px;
+	}
+	
+.subheadingone{
+	font-family:Tahoma;
+	font-size:11px;
+	font-weight:bold;
+	text-align:center;
+	color:#fff;
+	background:url(../images/bg-subhead.gif);
+	height:22px;
+	line-height:22px;
+	}
+	
+.commonbut{
+	font-family:Tahoma;
+	font-size:11px;
+	color:#fff;
+	font-weight:bold;
+	border:1px solid #dc6b00;
+	background:url(../images/bg-but.gif);
+	height:18px;
+	}
+
+a.action:link, a.action:visited {
+background-color: #594C3B;
+color: #eeeeee !important;
+border-top: 1px solid #333333;
+border-bottom: 1px solid #333333;
+font-weight:normal;
+font-size: 12px;
+padding: 2px;
+text-decoration:none !important;
+}
+
+.baddingbadge{
+	background:url(../images/bg.gif);
+	background-repeat:repeat;
+	margin:0px;
+	padding:0px;
+	font-family:Tahoma;
+	font-size:11px;
+	color:#6c6c6c;
+}
+
+.paginate{
+	font-family:Tahoma;
+	font-size:12px;
+	text-align:center;
+	color:#ee8701;
+	height:30px;
+	line-height:30px;
+	}
+#notice {
+ border: 2px solid orange;   
+ padding:1em;
+ margin-bottom: 2em;
+ background-color: #f0f0f0;
+ font: bold 11px sans-serif;
+ margin-left: 2px;  
+ padding-top: 5px;   
+ padding-left: 10px;
+ text-align:center;
+ background: white;
+}
+
+.newmember{
+	font-family:Tahoma;
+	font-size:11px;
+	color:#fff;
+	font-weight:bold;
+	border:1px solid #dc6b00;
+	background:url(../images/bg-but.gif);
+	height:18px;
+	width:120px;
+	}
+	
+.address
+{
+width:210px;
+height:60px;
+border:#d3ec9c 1px solid;
+font-family:Georgia, "Times New Roman", Times, serif
+font-size:11px;
+font-weight:normal;
+padding-left:8px;
+color:#405b06;
+}

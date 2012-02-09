@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+        "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Seasoned Adventurer &#8211; Private social network for adventurous people over 50.</title>
+  <%= stylesheet_link_tag "default" %>
+  <%= stylesheet_link_tag "menubar" , "depot" %>
+  <%= javascript_include_tag "menubar" %>
+  <%= javascript_include_tag 'date_picker', 'prototype','zapatec',"calendar","calendar-en" %>  
+  <%= stylesheet_link_tag 'date_picker' %>
+  <%= stylesheet_link_tag 'zpcal' %>
+  <%= stylesheet_link_tag 'template' %>
+  <%= stylesheet_link_tag 'aqua' %>
+  </head>
+  <body style="background-color:#ADB3BC">
+   <div class="main">
+    <div class="border">
+    <!-- header -->
+     <div class="header">
+      <div class="logo">
+        <img src="/images/logo_lrg_seasoned-adventure.gif" alt="Seasoned Adventurer &#8211; Private social network for adventurous people over 50" />
+      </div>
+       <div class="userInfo">
+	           <p>		
+		<%if session[:mail] != 0 %>		
+		<img alt="" src="/images/mail/mail_unread.gif" /><a href="/<%= session[:user].id %>/mail/inbox">New Mail! (<%= session[:mail]%>)</a> |
+		
+		<%end%> 
+		
+		<%= link_to 'Logout', {:controller => 'home', :action => 'logout', :id => session[:user].id}, :title => 'Click here to Logout'%></p>
+		<p>&nbsp;&nbsp;</p>
+		<p> You have <font color="#8C0000" >
+		<% if @network.network == 0 %>0
+		<% else %>
+		(<%= link_to @network.network, :controller => 'network', :action => 'index', :id => session[:user].id  %>)
+		<% end %></font> connections</p>
+	   
+        	
+		 
+        
+	  </div>
+      
+      <div class="clearer">
+	  
+	  </div>
+     </div>
+ 
+     <%= render :partial=>"home/menubar" %>
+     <!-- banners -->
+     <div class="banner">
+       <p class="bannerLarge">
+	  <%= image_tag (url_for_file_column('banner', "image","main")) %>
+        <!--<img alt="" src="/images/banners/ban_728x90_DC01-ani.gif" />-->
+       </p>
+       <p class="bannerSmall">
+	   <%= image_tag (url_for_file_column('banner', "sub_image","main")) %>
+        <!--<img alt="" src="/images/banners/ban_120x90_spa01.gif" />-->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       </p>
+       <p class="clearer"></p>
+     </div>
+     <!-- Bread Crumb Navigation -->
+	  <%= yield %>
+    </div>
+	
+	 
+   </div>
+   <div class="copyright">Copyright &copy; 2007 - CityRoom Press - All Rights Reserved</div>
+  </body>
+</html>

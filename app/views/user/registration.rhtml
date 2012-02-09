@@ -1,0 +1,306 @@
+ <%= javascript_include_tag 'registration' %>
+<% form_for :user ,:url=>{:controller => 'user',:action=> 'create_newuser'} ,:html => {:onSubmit => 'return isReg();',:multipart => true} do  %>
+<table width="90%" border="0" cellpadding="1" cellspacing="1">
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#cccc33" height="1"><div align="center">
+        <table cellspacing="1" cellpadding="1" width="100%" border="0">
+          <tbody>
+            <tr>
+              <td valign="top" bgcolor="#fffffe" height="1"><div align="center">
+                <table cellspacing="1" cellpadding="1" width="100%" 
+                                border="0">
+                  <tbody>
+                    <tr>
+                      <td bgcolor="#efefef" colspan="3" height="0"><div align="center"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#333333" size="-1">Please fill out the 
+                        following form and we will review it as soon as 
+                        possible. Note, all fields are mandatory. <br />
+                      </font></div></td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#fffffe"></td><td bgcolor="#fffffe"></td>
+                      <td bgcolor="#fffffe">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td width="39%"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Your First Name </font> </div></td><td>:</td>
+                      <td width="61%" align="left"><%= text_field :user,:First_Name,:id=>'First_Name', :style=>'width:150px;' %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td width="61%" align="left"><font class="star"><%= error_message_on 'user','First_Name' ,"First Name ","",:style=>'height:5px;' %> </font></td>
+                    </tr>
+					<tr>
+                      <td width="39%"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Your Last Name </font> </div></td><td>:</td>
+                      <td width="61%" align="left"><%= text_field ('user','Last_Name',:id=>'Last_Name', :style=>'width:150px;' )%></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td width="61%" align="left"><font class="star"><%= error_message_on 'user','Last_Name' ,"Last Name ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+					<tr>
+                      <td width="39%"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Gender </font> </div></td><td>:</td>
+                      <td width="61%" align="left"><%= radio_button('user','Gender','male',:id=>'Gender') %>
+                        &nbsp;Male&nbsp;&nbsp;
+                        <%= radio_button('user','Gender','female',:id=>'Gender1') %>
+                        &nbsp;Female</td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td width="61%" align="left"><font class="star"><%= error_message_on 'user','Gender' ,"Gender ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+					
+                    <tr>
+                      <td height="33"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Your Date of 
+                        Birth </font></div></td><td>:</td>
+                      <td align="left"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size="-1"><%= date_select 'user', 'birthday',  :order => [:day, :month, :year], :start_year => 1960, :end_year => 1920 %></font></td>
+                    </tr>
+					
+					
+					<tr>
+                      <td height="33"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Your Profile Photo
+                        </font></div></td><td>:</td>
+                      <td align="left"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size="-1"><%= file_column_field "user", "profile_image" %></font></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on ('user','profile_image',"Photo ") %></font></td>
+                    </tr>
+					
+                    <tr>
+                      <td><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Your Email Address 
+                        </font></div></td><td>:</td>
+                      <td align="left"><%= text_field :user,:email,:id=>'email',:style=>'width:150px;' %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on ('user','email',"Email ") %></font></td>
+                    </tr>
+					<tr>
+                      <td><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Password </font></div></td><td>:</td>
+                      <td align="left"><%= password_field :user,:password,:id=>'password',:style=>'width:150px;' %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on ('user','password',"Password ") %></font></td>
+                    </tr>
+					<tr>
+                      <td><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Confirmation Password </font></div></td><td>:</td>
+                      <td align="left"><%= password_field :user,:password_confirmation,:id=>'confirmation_password' ,:style=>'width:150px;'%></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on ('user','password_confirmation',"password confirmation " ) %></font></td>
+                    </tr>
+                    <tr>
+                      <td><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Your Primary Residence 
+                        Location </font></div></td><td>:</td>
+                      <td align="left"><%= text_area('user','primary_residence',:id=>'primary_residence',:style => 'height:30px;width:180px;') %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on 'user','primary_residence' ,"Primary Address ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+					<tr>
+                      <td><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">City </font></div></td><td>:</td>
+                      <td align="left"><%= text_field('user','City',:id=>'City',:style=>'width:150px;') %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on 'user','City' ,"City ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+                    <tr>
+                      <td><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Country </font></div></td><td>:</td>
+                      <td align="left"><%= country_select :user, :Country, ["","United States", "Canada"] ,:id=>'user[Country]',:prompt =>'Select a Country' %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on 'user','Country' ,"Country ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+                    <tr background="../gifs/dottedline-03.gif">
+                      <td valign="top" colspan="3" height="3"><font 
+                                color="#fffffe"></font></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" height="16"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">List the places you've 
+                        lived (for a minimum of 3 months) or places 
+                        where you are currently 
+                        living </font></div></td><td>:</td>
+                      <td align="left"><%= text_area('user','places_lived',:id=>'places_lived',:style => 'height:40px;width:300px;') %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on 'user','places_lived' ,"Places Lived ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+                    <tr background="../gifs/dottedline-03.gif">
+                      <td valign="top" colspan="3" height="3"><font 
+                                color="#fffffe"></font></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" height="16"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Please list some of the 
+                        places you've traveled to </font></div></td><td>:</td>
+       <td align="left"><%= text_area('user','places_traveled',:id=>'places_traveled',:style => 'height:40px;width:300px;') %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on 'user','places_traveled' ,"Places Traveled ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+                    <tr background="../gifs/dottedline-03.gif">
+                      <td valign="top" colspan="3" height="3"><font 
+                                color="#fffffe"></font></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" height="16"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">What are your hobbies / 
+                        interests</font></strong></div></td><td>:</td>
+  <td align="left"><%= text_area('user','personal_interests',:id=>'personal_interests',:style => 'height:40px;width:300px;') %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on 'user','personal_interests' ,"hobbies ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+                    <tr background="../gifs/dottedline-03.gif">
+                      <td valign="top" colspan="3" height="3"><font 
+                                color="#fffffe"></font></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" height="7"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">What is your current 
+                        profession? If retired, please describe your 
+                        past profession(s) and mention any current 
+                        business or entreprenurial activities you may be 
+                        involved in  </font></div></td><td>:</td>
+            <td align="left"><%= text_area('user','future_plans',:id=>'future_plans', :style => 'height:40px;width:300px;') %></td>
+                    </tr>
+					<tr>
+                     <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on 'user','future_plans' ,"Future Plans ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+                    <tr background="../gifs/dottedline-03.gif">
+                      <td valign="top" colspan="3" height="3"><font 
+                                color="#fffffe"></font></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" height="3"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Describe your ideal living 
+                        situation. How is it different from your current 
+                        lifestyle? </font></div></td><td>:</td>
+                  <td align="left"><%= text_area('user','work_life',:id=>'work_life',:style => 'height:40px;width:300px;') %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left"><font class="star"><%= error_message_on 'user','work_life' ,"lifestyle ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+                    <tr background="../gifs/dottedline-03.gif">
+                      <td valign="top" colspan="3" height="3"><font 
+                                color="#fffffe"></font></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" height="3"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">What do you value most in life</font><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">? </font></div></td><td>:</td>
+                 <td align="left"><%= text_area('user','value_life',:id=>'value_life',:style => 'height:40px;width:300px;') %></td>
+                    </tr>
+					<tr>
+                      <td valign="top" height="5"></td><td></td>
+ <td align="left"><font class="star"><%= error_message_on 'user','value_life' ,"Most Value in life  ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+                    <tr background="../gifs/dottedline-03.gif">
+                      <td valign="top" colspan="3" height="3"><font 
+                                color="#fffffe"></font></td>
+                    </tr>
+                    <tr>
+                      <td height="33"><div align="right"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#660000" size="-1">Do you know anyone who is 
+                        currently a member of SEASONED ADVENTURER? 
+                        Please list his/her name(s)</font></div></td><td>:</td>
+                  <td align="left" ><%= text_area('user','reference',:id=>'reference',:style => 'height:40px;width:300px;') %></td>
+                    </tr>
+					<tr>
+                      <td width="39%" height='5'></td><td></td>
+                      <td align="left" ><font class="star"><%= error_message_on 'user','reference' ,"References ","",:style=>'height:5px;' %></font></td>
+                    </tr>
+                    <tr background="../gifs/dottedline-03.gif">
+                      <td valign="top" colspan="3" height="3"><font 
+                                color="#fffffe"></font></td>
+                    </tr>
+                    <tr>
+                      <td colspan="3"><div align="center"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size="-1">
+                        <input type="radio" value="1" id="click" 
+                                name="radiobutton" />
+                        I declare that all information 
+                        submitted in this application is true and that I 
+                        am 50 years of age or older. </font></div></td>
+                    </tr>
+					
+                    <tr>
+                      <td colspan="3"><div align="center"><font 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color="#333333" size="-1">
+                        <%= radio_button_tag('radio','1',:id=>'radio') %>
+                        If accepted 
+                        to the S<font size="-2">EASONED </font>A<font 
+                                size="-2">DVENTURER <font 
+                                size="-1">c</font></font>ommunity, I agree to 
+                        receive occasional email updates from S<font 
+                                size="-2">EASONED </font>A<font 
+                                size="-2">DVENTURER</font>. </font></div></td>
+                    </tr>
+					
+                    <tr>
+                      <td colspan="3"><div align="center"><%= submit_tag 'Submit'%></div></td>
+                    </tr>
+                    <tr background="../gifs/dottedline-03.gif">
+                      <td valign="top" colspan="2" height="3"><font 
+                                color="#fffffe"></font></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>

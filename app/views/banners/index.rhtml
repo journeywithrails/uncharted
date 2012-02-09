@@ -1,0 +1,70 @@
+<script type="text/javascript">
+function isValid(){	
+	s=/(\.(gif|jpg|jpeg|bmp|png))$/i
+	
+if (!s.test(document.getElementById('img').value))
+{
+alert("Please select an image to upload.");
+document.getElementById('img').value="";
+document.getElementById('img').focus();
+return false;
+}
+return true;
+}
+</script>
+
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;" >
+	  <tr>
+			<td>
+			  <div class="subheadingtwo">Banner Image Details</div>
+			</td>
+	  </tr>
+</table>
+<br />
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+
+				<tr bgcolor="#ACACAC" style="padding-left:80px;">
+						<td align="left" >
+							<b>Main Image</b>
+						</td>
+				</tr>
+
+				<tr>
+					<td align="left">
+						<%= image_tag (url_for_file_column('banner', "image","main")) %> 
+					</td>
+				</tr>
+			
+				<tr>
+				
+					 <td align="left" width="50%">
+							 <% form_for :banner, :url => {:action => 'update', :id => @banner} , :html => {:multipart => true,:onSubmit=>'return isValid();'} do  -%>
+								&nbsp;&nbsp;&nbsp;<%= file_column_field 'banner', 'image',:id=>'img' %>
+								<%= submit_tag 'update', :class => 'commonbut' , :size => '30%'%> (Please upload an image with dimensions (728*90))
+								<% end %>
+					</td>
+				
+				</tr>
+			
+				<tr bgcolor="#ACACAC" style="padding-left:80px;">
+				<td align="left">
+				<b >Sub Image</b>
+				</td>
+				</tr>
+				
+				
+			<tr><td align="left"><%= image_tag (url_for_file_column('banner', "sub_image","main")) %></td></tr>
+					<tr style="padding-left:80px;">
+			 <td align="left" >
+			 <% form_for :banner, :url => {:action => 'update', :id => @banner} , :html => {:multipart => true,:onSubmit=>'return isValid();'} do  -%>
+			&nbsp;&nbsp;&nbsp;<%= file_column_field 'banner', 'sub_image', :size => '30%' %>
+			<%= submit_tag 'update', :class => 'commonbut' %> (Please upload an image with dimensions (120*90))<% end %>
+			</td></tr>
+			
+			
+			
+ 		
+
+</table>
+<br/><br/>
+</body>

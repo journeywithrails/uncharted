@@ -1,0 +1,210 @@
+<div class="breadCrumb">
+  <span><%= @profile.First_Name.humanize if !@profile.First_Name.nil? %>'s Profile  
+  &raquo;</span>
+</div>
+
+<!-- main content -->
+<div class="mainContent">
+<% if flash[:notice] -%>
+  <span class="flash_notice" id="flash_notice"><%= flash[:notice] %></span>
+<% end -%>
+<table width="95%" height="250px;" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+  <td width="20%" height="250px;" valign="top">
+  <% if session[:user].id == @profile.id %>
+  <%= link_to "Edit Profile", :controller => 'profile', :action => 'edit', :id => @profile.id %>
+  <% end %>
+   
+  <div>
+  <p>	
+  <% if @profile.profile_image.blank? %>
+  <%= image_tag ("/images/temp-photo.gif")%>
+  <% else %>
+  <%= image_tag (url_for_file_column('profile', "profile_image","main")) %>
+  
+ 
+  <% end %>
+  </p>
+  </div>  
+  </td>
+  
+  <td width="5%">&nbsp;</td>
+  
+  <td valign ="top">
+  <div class="profile">
+  
+    <label class="user"> <%= @profile.First_Name.humanize if !@profile.First_Name.nil?%>&nbsp;<%= @profile.Last_Name.humanize if !@profile.Last_Name.nil? %> <% if @profile.logged_in == 1 %><img alt="" src="/images/user_images/online.gif" /> <% end %></label>
+    <span class="options">Network:
+	<% if @list.size == 0 %> No Network Yet
+	<% else %>	
+	<%= link_to "#{@list.size} friends" , :controller => 'network', :action => 'index', :id => @profile %> 
+	<% end %>
+	 | Member since: <%= (@profile.created_at).to_date.to_s(:long) %></span>
+	
+	
+    <span class="options">
+	
+	 <% if session[:user].id != @profile.id %>
+     <% user = UserNetwork.find(:first, :conditions=>["(user_id LIKE ? AND friend_id LIKE ?) OR(friend_id LIKE ? AND user_id LIKE ?) ",session[:user].id,@profile.id,session[:user].id,@profile.id]) %>
+	<% if !user %>
+    <img alt="" src="/images/user_images/connect.gif" /> 		  
+	<%= link_to "Send Network Request to this Member", {:action => 'send_request', :id => @profile.id},:confirm => 'Are you sure you want to connect with this member?',:method => :post %>		 
+   &nbsp;&nbsp;
+    <% end %>
+	<% end %>	        
+      </span>
+
+      <label><b>Current Primary Residence :</b></label>
+      <span><%= @profile.primary_residence%></span>
+	  
+	   <label><b>Birthday :</b></label> 	   	  
+      <span>
+	  <%  if @profile.user_settings.display_year == 0 %>
+	  <%= (@profile.birthday).to_date.strftime "%B, %d" %>
+	  <% else %>
+	  <%= (@profile.birthday).to_date.to_s(:long) %>
+	  <% end %>
+	  </span>
+	 
+	  <label><b>Gender :</b></label>
+      <span><%=@profile.Gender %></span>
+	  <label><b>City :</b></label>
+      <span><%=@profile.City %></span>
+	  <label><b>State :</b></label>
+      <span><%=@profile.State %></span>
+	  <label><b>Country :</b></label>
+      <span><%=@profile.Country %></span>
+      <label><b>Places I've lived :</b></label>
+      <span><%=@profile.places_lived %></span>
+      <label><b>A few of the places I've traveled to  :</b></label>
+      <span><%=@profile.places_traveled %></span>
+      <label><b>Personal Interests :</b></label>
+      <span><%=@profile.personal_interests %></span>
+      <label><b>Work Life :</b></label>
+      <span><%=@profile.work_life %></span>
+      <label><b>Plans for the Future :</b></label>
+      <span><%=@profile.future_plans %></span>
+	  <label><b>I value Most in Life:</b></label>
+      <span><%=@profile.value_life %></span>
+    </div>
+	
+</td>
+  </tr>
+</table>		
+	
+    <div class="clearer">
+	</div>
+    
+	
+ <div class="pageBottom dotted">
+ <br/>
+  <span><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-2><%= @profile.First_Name.humanize if !@profile.First_Name.nil? %>&nbsp;Network: 
+                                (<% if @list.blank? %> 0 <% else %> <%= @list.size if !@list.blank? %> <% end %>friends)</FONT>
+ </span>
+   </div>
+   
+<table align="center" width="95%" border="0" cellspacing="0" cellpadding="0">
+ <tr><td>&nbsp;</td></tr>
+  <% if @list.blank? %>
+  <tr>
+    <td valign="top">No Network Yet</td>
+  </tr>  
+  
+  <% else %> 
+  
+  <tr> 
+  <td>
+
+	
+	
+	
+  
+ 
+ 
+
+		<% for user_network in @list %>
+		 <DIV class="profile_new">
+                                <TABLE cellSpacing=0 cellPadding=0 width="auto" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD>
+                                <DIV align="center">
+								<% if user_network.profile_image.blank?%>
+								<%= image_tag("/images/photo-coming-soon.gif") %>
+								<% else %>
+								<%=  image_tag (url_for_file_column(user_network, "profile_image",'thumbnail')) %>
+								<% end %>								
+								</DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align="center"><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+								<a href="<%= user_profile_url(:user=> user_network.id) %>"><%= (user_network.First_Name).humanize if !user_network.First_Name.nil? %> </a>
+								
+								</FONT></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align="center"><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2><%= ((user_network.City).to(10)).humanize if !user_network.City.nil? %> 
+                               
+                                </FONT></FONT></DIV></TD></TR>
+								<TR>
+                                <TD>
+                                <DIV align="center"><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>( <%= ((user_network.Country).to(10)).humanize if !user_network.Country.nil? %> ) 
+                              
+                                </FONT></FONT></DIV></TD></TR>
+								<TR>
+                                <TD>
+                                <DIV align=center>
+									<FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+								
+								<a href="/<%=session[:user].id %>/mail/compose/<%= user_network.id %>">
+								<%= image_tag("/images/contact.gif", :style => 'border:0;')%></a>Contact
+								
+								
+                                </FONT></FONT></DIV></TD></TR>
+								
+								
+								
+								
+								</TBODY></TABLE></DIV><%end %>
+								
+							
+								
+	<% end %>	</td>
+  </tr>
+</table>
+  
+<div class="clearer">
+</div>
+
+<% if session[:user].id == @profile.id %>
+<%= render :partial=>"user_updates", :locals=>{:updates=>@updates} %>
+<% end %>
+<!--articles content-->
+<div class="clearer">
+</div>
+ <div class="pageBottom dotted">
+<%= render :partial=>"article", :locals=>{:article=>@article} %>
+ </div>
+
+
+
+
+
+      <div class="pageBottom dotted">
+        <br />
+        <span>Do you have a friend that you think would be a valuable addition to our community? SEASONED ADVENTURER is an invitation-only, private social network, but if you would like to suggest someone to be reviewed for possible membership, please 
+		<%= link_to 'suggest a member',:controller =>'home', :action => 'invite_new_member' %>.</span>
+      </div>
+         
+    </div></div> 

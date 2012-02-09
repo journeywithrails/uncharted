@@ -1,0 +1,37 @@
+    <span class="title"><strong>Message:</strong></span>
+    <p>
+      <%if mail_box == "sent" -%>
+      <span>To: <a href="<%= user_profile_url(:user=>message.to_id.id) %>"><%=message.to_id.First_Name%></a>		  
+	  </span>
+      <% else -%>
+      <span>From: <a href="<%= user_profile_url(:user=>message.from_id.id) %>"><%=message.from_id.First_Name%></a>	  
+	  </span>
+      <% end -%>
+	   <span class="spacer"></span>
+      <span>Subject: <%=message.subject %> </span>
+	   <span class="spacer"></span>
+      <span class="date"><%= message.date_sent.gmtime.strftime('%B %d, %Y at %I:%M%p GMT') %></span>
+      <span class="spacer"></span>
+    </p>
+    <p class="forp">
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+	  
+      <%= sanitize(message.message) %>
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+    </p>
+    <p>
+      <span class="spacer"></span>
+      <%if mail_box == "inbox" -%>
+      <span><img src="/images/mail/mail_reply.gif" /><a href="/<%=session[:user].id%>/mail/compose/<%= message.from_id.id%>">Reply to this message</a></span>
+      <% end -%>
+      <span><img src="/images/mail/trash.gif" alt="delete message" /><a href="<%= delete_message_url(:user=>session[:user].id, :mail_box=>mail_box, :id=>message.id)%>">Delete Message</a></span>
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+    </p>
+    <span class="title">&nbsp;</span>
+    
+    

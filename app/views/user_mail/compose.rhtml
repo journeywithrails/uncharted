@@ -1,0 +1,108 @@
+<%= javascript_include_tag 'compose_mail' %> 
+ <script type="text/javascript">
+  	function addcode(str)
+	{
+		document.mail_message.value +=  str;
+		return false;
+	}
+  </script>
+
+
+
+     <div class="breadCrumb">
+       <span> Mailbox &raquo; <a href="/<%=session[:user].id %>/mail/compose">Compose Mail</a> &raquo;</span>
+     </div>
+     <!-- main content -->
+     <div class="mainContent">
+      <p class="mailLinks"><a href="/<%=session[:user].id %>/mail/inbox">Inbox</a> | <a href="/<%=session[:user].id %>/mail/sent">Sent Mail</a> | <a href="/<%=session[:user].id %>/mail/compose">Compose Mail</a></p>
+      <div class="usermail compose">
+       <span class="title"><strong>Compose Mail:</strong></span>
+        <span class="spacer"></span>
+		
+   <div id="s">
+   <form name=appl_form action="<%= send_mail_url(:user=>session[:user].id)%>" method="post" onsubmit = "return valid();">
+		
+        <% if @userinfo -%>
+        <span>To: <a href="<%= user_profile_url(:user=>@userinfo.id) %>"><%=@userinfo.First_Name%></a>		  
+		<span class="change">Change Recipient:
+		<a href="/<%=session[:user].id %>/mail/compose"><%= image_tag("/images/mail/network.gif", :style => 'border:0;')%></a>
+		
+		</span></span>
+        <input type="hidden" value="<%=@userinfo.id%>" name="mail[to_user]" />
+        <% else -%>
+        <span>To:</span>
+		 <span class="spacer"></span>
+		 
+		 
+		 <select name="mail[to_user]" id = "mail_to" >	
+			 <option value= "Select User" selected="selected">Select User</option>				
+		 <%= options_from_collection_for_select @compose_list , "id", 'First_Name','params[:email]' %>
+		 </select>		 
+		<span class="change">
+		<a href="#" onClick="Element.hide('s');Element.show('e');">Change Recipient:</a>
+		<img src="/images/mail/network.gif" alt="change recipient" /></span>
+		 <% end -%>
+        <span class="spacer"></span>
+        <span class="spacer"></span>
+        <span>Subject:</span>
+        <span class="spacer"></span>
+        <span><input type="text" name="mail[subject]", id = "mail_subject" /></span>
+        <span class="spacer"></span>		
+        <span>Message:</span>
+        <span class="spacer"></span>
+        <span><textarea name="mail[message]" id = "mail_message" cols="40" rows="5" ></textarea></span>
+        <span class="spacer"></span>
+        <span class="spacer"></span>
+        
+        <span><input class="submit" type="submit" value="Send Message"></span>
+        </form>
+		
+		</div>
+		
+		
+	<div id="e" style="display:none;">
+   <form name=test action="<%= send_mail_url(:user=>session[:user].id)%>" method="post" onsubmit = "return validation();">
+		
+        <% if @userinfo -%>
+        <span>To: <a href="<%= user_profile_url(:user=>@userinfo.id) %>"><%=@userinfo.First_Name%></a>		  
+		<span class="change">Change Recipient:
+		<a href="/<%=session[:user].id %>/mail/compose"><%= image_tag("/images/mail/network.gif", :style => 'border:0;')%></a>
+		
+		</span></span>
+        <input type="hidden" value="<%=@userinfo.id%>" name="mail[to_user]" />
+        <% else -%>
+        <span>To:</span>
+		 <span class="spacer"></span>
+		<span class="change">
+		<input type="text" name="mail[to_user]", id = "mail_to1"/>		
+		<a href="#" onClick="Element.hide('e');Element.show('s');" >Change Recipient:</a>
+		<img src="/images/mail/network.gif" alt="change recipient" /></span>
+		
+		 <% end -%>
+        <span class="spacer"></span>
+        <span class="spacer"></span>
+        <span>Subject:</span>
+        <span class="spacer"></span>
+        <span><input type="text" name="mail[subject]", id = "mail_subject1" /></span>
+        <span class="spacer"></span>		
+        <span>Message:</span>
+        <span class="spacer"></span>
+        <span><textarea name="mail[message]" id = "mail_message1" cols="40" rows="5" ></textarea></span>
+        <span class="spacer"></span>
+        <span class="spacer"></span>
+        
+        <span><input class="submit" type="submit" value="Send Message"></span>
+        </form>
+		
+		</div>
+		
+		
+		
+	  <div class="clearer"></div>	
+  <div class="pageBottom dotted">
+    <br />
+    <span>Do you have a friend that you think would be a valuable addition to our community? SEASONED ADVENTURER is an invitation-only, private social network, but if you would like to suggest someone to be reviewed for possible membership, please 
+	<%= link_to 'suggest a member',:controller =>'home', :action => 'invite_new_member' %>.</span>
+  </div>   
+     </div>
+       

@@ -1,0 +1,82 @@
+
+
+
+
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;">
+  <tr>
+    <td>
+
+
+<div class="subheadingtwo">Reply to Comment</div>
+ <br/>
+ 
+	</td>
+  </tr>
+</table><br />
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2" >
+
+<% form_for :feedback_reply, :url => {:action => 'create_reply', :id => @comment.id }, :html => {:multipart => true} do  -%>
+
+
+  
+		 <%= hidden_field 'feed_back', 'user_id' %>
+		 <%= hidden_field 'feed_back', 'Subject',:value=> 'RE' %>
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Email id</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:</b> 
+			</td>
+			<td>
+			<table width="90%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			<td width="30%" align="left" class="regtext1">			
+			<%=  @feed_back.user.email %>
+			</td>
+			</tr></table>
+			</td>
+		</tr>
+
+		
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Comment </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area 'feed_back', 'Description' , :class=> 'textarea' %>
+			
+			</td>
+		</tr>
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :feed_back, :Description %>
+					 </font></td>
+					</tr>
+		
+		
+			<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Attach File </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			
+		<%= file_column_field 'feed_back', 'file', :size => '20%' %>
+			
+			
+			</td>
+			</tr>
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :feed_back, :file %>
+					 </font></td>
+					</tr>
+		
+				
+		<tr><td>&nbsp;</td><td colspan="2" align="left"><%= submit_tag 'Submit Reply', :class => 'commonbut' %><% end -%></td></tr>
+</table>
+

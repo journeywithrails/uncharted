@@ -1,0 +1,145 @@
+<%= javascript_include_tag 'profile_edit' %>
+<div class="breadCrumb">
+  <span><%= @user.First_Name if !@user.First_Name.nil? %>'s Profile  
+  &raquo;</span>
+</div>
+
+<!-- main content -->
+<div class="mainContent">
+<table width="95%" height="250px;" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+  <td width="20%" height="250px;" valign="top"> 
+  <a href="<%= user_profile_url(:user=>@user.id) %>">View Profile</a>   
+  <div >
+  <p>	
+  <% form_for :user, :url =>{:controller => 'profile', :action =>'update', :id => @user.id }, :html => {:multipart => true} do   %>
+   <% if @user.profile_image.blank? %>
+  <%= image_tag ("/images/temp-photo.gif"),:style => "height:250px;"%>
+  <% else %>
+  <%= image_tag (url_for_file_column('user', "profile_image","main")) %>
+  <% end %>
+  <%= file_column_field 'user', 'profile_image', :size => '20%' %>
+  <input type="submit"  value="Update" />
+  <% end %>
+  </p>
+  </div>  
+  </td>  
+  <td width="5%">&nbsp;</td>  
+  <td>
+  <div class="edit_profile">  
+    <label class="user"> <img alt="" src="/images/user_images/online.gif" /></label>
+    <span class="options">Edit Your Profile</span>	
+ <% form_for :user, :url => {:controller => 'profile', :action => 'update', :id => @user.id }, :html => {:onSubmit => 'return isReg();',:multipart => true} do    %>
+ <label for="user[First_Name]">First Name : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last Name :</label> 
+        <span>
+		<input type="text" name="user[First_Name]" value="<%= @user.First_Name %>" id="First_Name" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="text" name="user[Last_Name]" value="<%= @user.Last_Name %>" id="Last_Name" />
+		</span>
+		<span> <font color="#FF0000" >
+		<table width="95%" height="5px;" border="0" cellspacing="5" cellpadding="0">
+		<tr><td width="15%"><%= error_message_on :user, :First_Name %></td>
+		<td width="15%"><%= error_message_on :user, :Last_Name %></td>
+		</tr></table>		
+		</font></span>	
+
+		
+		
+		
+	    <label for="user[birthday]"> Date of Birth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gender:</label>
+		<span><input type="text" name="user[birthday]" value="<%= @user.birthday.strftime("%m-%d-%Y") if !@user.birthday.nil? %>" id = "birthday" />	
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= radio_button :user, :Gender, 'male' , :id =>'Gender' %>&nbsp;&nbsp;Male&nbsp;&nbsp;
+
+<%= radio_button :user, :Gender, 'female' , :id => "Gender1" %>&nbsp;&nbsp;Female		
+	   </span>
+	   (MM-DD-YYYY)  
+		<span> <font color="#FF0000" >
+		<table width="95%" height="5px;" border="0" cellspacing="5" cellpadding="0">
+		<tr><td width="15%"><%= error_message_on :user, :birthday %></td>
+		 <td width="15%x"><%= error_message_on :user, :Gender %></td>
+			</tr></table>
+		</font></span>
+  
+        <label for="user[primary_residence]" >Current Primary Residence :</label>
+        <span><input type="text" name="user[primary_residence]" value="<%= @user.primary_residence%>" id="primary_residence" style="width:80%;" /> </span>
+		<span> <font color="#FF0000" ><%= error_message_on :user, :primary_residence  %></font></span>
+		
+ <label for="user[City]">City: </label>
+    <span>
+		<input type="text" name="user[City]" value="<%= @user.City %>" id="City" />
+			
+		</span>
+		<span> <font color="#FF0000" >
+		<table width="95%" height="5px;" border="0" cellspacing="5" cellpadding="0">
+		<tr><td width="31%"><%= error_message_on :user, :City %></td>
+		</tr></table>		
+		</font></span>
+		
+        <label for="user[State]">State: </label>
+        <span>
+		<input type="text" name="user[State]" value="<%= @user.State %>" id="State" />
+			
+		</span>
+		<span> <font color="#FF0000" >
+		<table width="95%" height="5px;" border="0" cellspacing="5" cellpadding="0">
+		<tr><td width="31%"><%= error_message_on :user, :State %></td>
+		</tr></table>
+		
+		
+		</font></span>
+	<label for="user[First_Name]">Country:</label>
+	    <span>
+	<%= country_select :user, :Country, ["United States", "Canada"]%>
+	</span>
+	<span> <font color="#FF0000" >
+		<table width="95%" height="5px;" border="0" cellspacing="5" cellpadding="0">
+		<tr>
+		<td width="15%"><%= error_message_on :user, :Country %></td>
+		</tr></table></font></span>
+
+        <label for="places_lived">Places I've lived :</label>
+        <span><textarea name="user[places_lived]" style="width:99%;height:50px;" id ="places_lived"><%= @user.places_lived%></textarea></span>
+		<span> <font color="#FF0000" ><%= error_message_on :user, :places_lived %></font></span>
+		
+        <label for="places_traveled">A few of the places I've traveled to :</label>
+        <span><textarea name="user[places_traveled]" style="width:99%;height:50px;" id ="places_traveled" ><%= @user.places_traveled%></textarea></span>
+		<span> <font color="#FF0000" ><%= error_message_on :user, :places_traveled %></font></span>
+		
+        <label for="places_traveled">Personal Interests :</label>
+        <span><textarea name="user[personal_interests]" style="width:99%;height:50px;" id ="personal_interests" ><%= @user.personal_interests%></textarea></span>
+		<span> <font color="#FF0000" ><%= error_message_on :user, :personal_interests %></font></span>
+		
+        <label for="work_life">Work Life :</label>
+        <span><textarea name="user[work_life]" style="width:99%;height:50px;" id ="work_life"><%= @user.work_life%></textarea></span>
+		<span> <font color="#FF0000" ><%= error_message_on :user, :work_life %></font></span>
+		
+        <label>Plans for the Future :</label>
+        <span><textarea name="user[future_plans]" style="width:99%;height:50px;" id ="future_plans"><%= @user.future_plans%></textarea></span>
+		<span> <font color="#FF0000" ><%= error_message_on :user, :future_plans %></font></span>
+		
+		<label>What do you value most in life :</label>
+        <span><textarea name="user[value_life]" style="width:99%;height:50px;" id ="value_life"><%= @user.value_life%></textarea></span>
+		<span> <font color="#FF0000" ><%= error_message_on :user, :value_life %></font></span>
+        <span>
+		<%= link_to "click here to change your password" ,:controller => 'profile' ,:action => 'change_password' ,:id =>@user %>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+		
+        <span style="text-align:right;"><input type="submit" value="Update Profile" /></span>
+      <% end %>
+    </div>
+	
+</td>
+  </tr>
+</table>		
+	
+    <div class="clearer">
+	</div>
+    
+      <div class="pageBottom dotted">
+        <br />
+        <span>Do you have a friend that you think would be a valuable addition to our community? SEASONED ADVENTURER is an invitation-only, private social network, but if you would like to suggest someone to be reviewed for possible membership, please 
+		 <%= link_to 'suggest a member',:controller =>'home', :action => 'invite_new_member' %>.</span>
+      </div>
+      </div>      
+    </div>

@@ -1,0 +1,72 @@
+
+
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;">
+  <tr>    <td><div class="subheadingtwo">Create New SiteNews</div>	</td>  </tr>
+</table><br />
+<% form_for :site_new, :url => {:action => 'update', :id => @site_new} do  -%>
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2" >
+
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Name</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:</b> 
+			</td>
+			<td>
+			<table width="90%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			<td width="30%" align="left" class="regtext1">			
+			<%= text_field 'site_new', 'name'  %>
+			</td>
+			</tr></table>
+			</td>
+		</tr>
+
+<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :site_new, :name %>
+					 </font></td>
+					</tr>
+		
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Title </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_field 'site_new', 'title'  %>
+			</td>
+		</tr>
+		
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :site_new, :title %>
+					 </font></td>
+					</tr>
+		
+			<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Description </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+		<%= text_area 'site_new', 'description' , :class=> 'textarea' %>
+			
+			</td>
+		</tr>
+		
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :site_new, :description %>
+					 </font></td>
+					</tr>
+								
+<tr><td></td>
+<td width="15%"><%= link_to image_tag('/images/cancel_button.jpg'), {:controller => 'news', :action => 'list'}%></td>
+
+<td colspan="2" align ="left"> <%= submit_tag 'Submit', :class => 'commonbut' %> </td></tr>
+</table>
+
+<% end %>

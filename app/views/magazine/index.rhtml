@@ -1,0 +1,95 @@
+<head>
+<script type="text/javascript">
+function isEmpty(query)
+{
+
+if(document.getElementById('query').value=="")
+{
+alert("Please Enter Title");
+document.getElementById('query').focus();
+return false;
+}
+}
+</script>
+</head>
+<body class="baddingbadge">
+
+
+
+
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+<tr><td><div class="subheadingtwo">List of Articles</div></td></tr>
+<tr><td>
+
+
+<% form_for :article,  :url => { :action => "index" }, 
+                              :html => {:name=> 'appl_form', :onSubmit=>"return isEmpty('query');"} do  %>
+
+
+
+
+<tr><td align="right"> Search by Title:&nbsp; <%= text_field_tag (:query)%>&nbsp;&nbsp;&nbsp;
+  <%= submit_tag "search" , :class => 'commonbut' %></td>
+</tr>
+<% end %>
+
+
+
+<% if @article.blank? %>
+<tr><td align="left">No Articles></td></tr>
+<% else %>
+<tr><td align="left">Total number of Articles = <%= (@article).size %></td></tr>
+
+<tr><td>
+<br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+    <td width="5%" align="center">SNo</td>
+    <td width="18%" align="center">Category</td>
+    <td width="22%" align="center">Title</td>
+    <td width="14%" align="center">Body</td>
+    <td width="17%" align="center">Image </td>
+    <td width="24%" align="center">ACTION</td>
+  </tr>
+  <% @count=0 %> 
+  <% for @article in @article %>  
+  <% @count=@count+1%>
+
+  
+  <tr>
+    <td align="center"><%= @count %></td>
+    <td align="center"><%= (@article.article_category.title).humanize %></td>
+    <td align="center"><%= (@article.article_title).humanize %></td>
+    <td align="center"><%= (@article.article_body).to(30) + "...." %></td>
+    <td align="center">
+	<% if @article.article_image.blank?%>No Image<% else %><%= image_tag (url_for_file_column('article', "article_image","main")) %><% end %>
+	
+	</td>
+    <td align="center">
+	<%= link_to image_tag("/images/show.png"),{:action => 'show', :id => @article }, :title => "Click Here View Article"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-edit.gif"),{:action => 'edit', :id => @article }, :title => "Click Here to Edit Article"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:action => "delete", :id => @article}, :title => "Click Here to Delete Article"%>
+	
+	</td>
+  </tr>
+  <% end %>
+  
+</table>
+
+
+<% end %>
+<br/><br/>
+ <div style="float:right;padding-right:30px"> <%= button_to 'Create New Article', {:action => 'new' }, :class => 'commonbut' , :style=>'width:150px'%> </div>
+ 
+ </td></tr></table>
+</body>
+</html>
+
+
+
+
+

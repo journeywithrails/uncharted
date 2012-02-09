@@ -1,0 +1,34 @@
+8
+
+dir
+21
+https://svn.tomfmason.net/svn/seasonedadventurer/trunk/seasonedadventurer/vendor/plugins/will_paginate/lib
+https://svn.tomfmason.net/svn/seasonedadventurer
+
+
+
+2007-09-17T07:29:44.074801Z
+2
+tomfmason
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+101b2f53-4338-0410-998b-f98c8408ca18
+
+will_paginate
+dir
+
+core_ext
+dir
+

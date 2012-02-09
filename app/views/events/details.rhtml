@@ -1,0 +1,96 @@
+<div class="breadCrumb">
+  <span><%= link_to 'Events >>', :controller=>'events', :action=>'index'%> &nbsp;&nbsp;Details</span>
+</div>
+
+<div class="mainContent">
+<div align="center">
+<img alt="" src="/images/suggest-event.gif" /><a href="<%= suggest_event_path %>"><strong>Suggest an event</strong></a>
+</div><br />
+
+<div  style="background-color:#efefef; padding-left:60px;">
+	<font color="#ffffff" face="Verdana, Arial, Helvetica, sans-serif">
+		<font color="#a3310f" size="+1"> Event '<%= (@event.event_title).humanize%>' details</font>
+	</font>
+</div>
+
+      <table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+       <tr ><td colspan="3">&nbsp;</td></tr>
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Event Date: </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= (@event.event_date).to_date.to_s(:long)  %>
+			</td>
+		</tr>
+		<tr>
+					<td width="15%" align="left" class="regtext1">
+			<b >Title:</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @event.event_title %>
+			</td>
+		</tr>
+		
+			<tr>		<td width="15%" align="left" class="regtext1">
+			<b >Location: </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+		<%= @event.event_location %>
+			</td>
+		</tr>
+		
+				<tr>	<td width="15%" align="left" class="regtext1">
+			<b >Description </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+		<%= @event.event_description %>
+			</td>
+		</tr> 
+			<tr>	<td width="15%" align="left" class="regtext1">
+			<b >Contact </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<a href="/<%=session[:user].id %>/mail/compose/<%= @event.user_id %>"><%= @event.user.email %></a>
+		
+			</td>
+		</tr> 
+		
+		<% if !@event.url.blank?%>
+		<tr>
+		<td width="15%" align="left" class="regtext1">
+			<b >You can find More Information at </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+		  <%= @event.url %>
+			</td>
+		</tr>
+		<% end %>
+		</table>
+       
+	  <div class="clearer"></div>	
+  <div class="pageBottom dotted">
+    <br />
+    <span>Do you have a friend that you think would be a valuable addition to our community? SEASONED ADVENTURER is an invitation-only, private social network, but if you would like to suggest someone to be reviewed for possible membership, please 
+	<%= link_to 'suggest a member',:controller =>'home', :action => 'invite_new_member' %>.</span>
+  </div>   
+     </div>
+ 

@@ -1,0 +1,100 @@
+<body class="baddingbadge">
+<%= stylesheet_link_tag 'style' %>
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;" >
+  <tr>
+    <td>
+
+
+<div class="subheadingtwo">Product Details</div>
+ <br/>
+ 
+	</td>
+  </tr>
+</table><br />
+
+<br />
+
+
+	
+
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Name </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= (@product.name).humanize %> 
+			</td>
+		</tr>
+
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Title </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= (@product.title).humanize %>  
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Body</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @product.description %> 
+			</td>
+		</tr>
+						<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Price</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%=  @product.price %>
+			</td>
+		</tr>
+
+				<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Image</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<% if @product.image.blank?%>No Image<% else %><%= image_tag (url_for_file_column('product', "image"), :style =>'width:144px;height:100px') %><% end %>
+			</td>
+		</tr>
+
+
+
+
+				
+				<tr><td colspan="3">&nbsp;</td></tr>
+ 		<tr>
+			<td width="15%" align="center" class="regtext1">
+				<%= button_to "Back", {:controller => 'products', :action => 'list'}, :class => 'commonbut'%>
+	
+			</td>
+			<td width="2%" align="center" class="regtext1">&nbsp;
+			 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= button_to "Edit", { :action => 'edit', :id => @product }, :class => 'commonbut'%>
+			
+			</td>
+		</tr>
+
+</table>
+<br/><br/>
+</body>

@@ -1,0 +1,60 @@
+
+
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;" "class="inerfontkicolor">
+
+  <tr>    <td><div class="subheadingtwo">Edit Post</div>	</td>  </tr>
+  <tr><td style="padding-left:45px;"><%= link_to "Categories >>", :action => "list_categories"%> <%= link_to "#{@post.forum_category.title}" + '>>', :action => 'posts', :id => @post.forum_category.id %> <%= @post.subject %> >> Edit</td></tr>
+  <tr><td>&nbsp;</td></tr>  
+  
+</table><br />
+
+
+<% form_for :forum_post, :url => {:controller => 'forums' ,:action => 'update_post', :id => @post} do  -%>
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2" >
+
+
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Title</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:</b> 
+			</td>
+			<td width="30%" align="left" class="regtext1">			
+			<%= text_field 'post', 'subject' %>
+			</td>
+		</tr>
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :forum_category, :title %>
+					 </font></td>
+					</tr>
+
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Description </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area 'post', 'content' , :class=> 'textarea' %>
+			</td>
+		</tr>
+		
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :forum_category, :description %>
+					 </font></td>
+					</tr>
+					
+<tr><td colspan ="3">&nbsp;</td></tr>  
+		
+		
+						
+<tr>
+<td width="15%"><%= link_to image_tag('/images/cancel_button.jpg'), {:controller => 'forums', :action => 'posts', :id=> @post.forum_category_id}%></td>
+<td colspan="2" align ="left"> <%= submit_tag 'Submit', :class => 'commonbut' %> </td></tr>
+		
+		
+	
+</table><% end %>
+

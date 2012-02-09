@@ -1,0 +1,63 @@
+     <div class="mainHeaderNav">
+
+      <div class="clearer"></div>
+      <ul id="mainNav" class="MenuBarHorizontal">
+        <li><a class="MenuBarItemSubmenu" href="/<%=session[:user].id %>/mail/inbox">Mailbox | </a>
+          <ul>
+            <li><a href="/<%=session[:user].id %>/mail/inbox">Inbox</a></li>
+            <li><a href="/<%=session[:user].id %>/mail/outbox">Sent Mail</a></li>
+            <li><a href="/<%=session[:user].id %>/mail/compose">Compose Mail</a></li>
+          </ul>
+        </li>
+		
+        <li>
+		<a href="<%= user_profile_url(:user=>session[:user].id) %>">MyProfile |</a></li>
+		<li><%= link_to "My Network |", :controller => 'network', :action => 'index', :id => session[:user].id %></li>
+		
+		
+        <li><%= link_to "Browse Members |", :controller => 'members', :action => 'search'%>
+		<!--<a href="#">Browse Memebers | </a>-->
+		</li>
+		
+		
+		
+		
+		
+		
+        <li><%= link_to 'Forum |', :controller=>'forum', :action=>'show_categories' %> <ul>		   
+          	<% @forum_categories = ForumCategory.find :all,:select=>:title -%>
+          	<% if @forum_categories -%>
+          	<% for category in @forum_categories %>
+     <li><a href="<%= forum_category_path(:category=>category.title.gsub(' ', '_')) %>">
+	 <%= (category.title.gsub('_', ' ')).titleize %></a></li>
+            <% end -%>
+            <% else -%>
+            <li><a href="#">&nbsp;</a> </li>
+            <% end -%>
+          </ul>
+        </li>
+        <li><%= link_to 'Events |', :controller=>'events', :action=>'index'%>
+		
+		</li>
+        <li><%= link_to 'MarketPlace |', :controller => 'boutiques', :action => 'list'%></li>
+        <li><%= link_to "Magazine |", :controller => 'magazine', :action => 'list' %></li>
+		<li>
+		<a href="<%= user_settings_url(:user=>session[:user].id) %>">Settings |</a>		
+		</li>
+		
+        <li><a class="MenuBarItemSubmenu" href="#">Help | </a>
+          <ul>
+            <li><%= link_to 'FAQ', :controller => 'home', :action => 'FAQ'%> </li>
+            <li><%= link_to "Contact Us" , :controller => 'feed_back', :action => 'index' %></li>
+          </ul>
+        </li>
+        <li><%= link_to "About Us |", :controller => 'about_seasoned_adventurer', :action => 'index' %></li>
+        <li><%= link_to "Invite a Friend", :controller => 'home', :action => "invite_new_member" %></li>
+        
+      </ul>
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("mainNav");
+//-->
+</script>
+     </div>

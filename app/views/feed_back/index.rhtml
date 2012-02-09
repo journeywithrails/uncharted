@@ -1,0 +1,50 @@
+       <%= javascript_include_tag 'feedback' %>
+	   <div class="breadCrumb">
+  <span>Contact Us&raquo;</span>
+</div>
+<div class="mainContent">
+	   
+	   
+	   <div class="usermail compose">
+       <span class="title"><strong>Contact Us</strong></span>
+        <span class="spacer"></span>
+		
+		<span>Please fill out the form below and include a brief description of your inquiry. One of our qualified representatives will contact you ASAP.</span>		
+		
+		<% form_for :feedback, :url => { :action => 'create' }, :html => {:onSubmit => 'return isFeedBack();',:multipart => true} do  %>
+      
+		
+		<input type="hidden" name="feed_back[user_id]"  value = <%= @profile.id %> />
+        <span class="spacer"></span>
+        <span><strong>Your Name :</strong> &nbsp;&nbsp;<%= @profile.First_Name %></span>
+        <span class="spacer"></span>
+
+		 <span><strong>Your Email Address:</strong> &nbsp;&nbsp; <%= @profile.email %></span>
+      
+		 <span class="spacer"></span>
+		<span><strong>Subject*:</strong></span>
+        <span class="spacer"></span>
+        <span><input type="feed_back" name="feed_back[Subject]"  id="subject"/></span>
+		<span class="spacer"></span>
+        <span  class="title" ><font color="#FF0000" ><%= error_message_on :feed_back, :Subject %></font></span>
+		<span class="spacer"></span>
+        <span><strong>Describe your inquiry*:</strong></span>
+        <span class="spacer"></span>
+        <span><textarea name="feed_back[Description]" id="description"></textarea><span>
+        <span class="spacer"></span>
+		<span  class="title"><font color="#FF0000" ><%= error_message_on :feed_back, :Description %></font></span>
+        <span class="spacer"></span>
+		<span><strong>Attach a File:</strong></span>
+        <span class="spacer"></span>
+		<span><%= file_column_field 'feed_back', 'file', :size => '20%' %></span>
+		<span class="spacer"></span>
+        <span><input class="submit" type="submit" value="Suggest Event"></span>
+        <% end %>
+      </div>
+	   <div class="clearer"></div>	
+  <div class="pageBottom dotted">
+    <br />
+    <span>Do you have a friend that you think would be a valuable addition to our community? SEASONED ADVENTURER is an invitation-only, private social network, but if you would like to suggest someone to be reviewed for possible membership, please 
+	<%= link_to 'suggest a member',:controller =>'home', :action => 'invite_new_member' %>.</span>
+  </div>   
+	  </div>

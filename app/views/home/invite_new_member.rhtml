@@ -1,0 +1,213 @@
+<%= javascript_include_tag 'member' %>
+
+<% form_for :invitation ,:url=>{:controller => 'home',:action=> 'create_member', :id=>'invitation' },:html => {:onSubmit => 'return isMember();'} do  %>
+
+<DIV align=center>
+                              <TABLE cellSpacing=9 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+                               
+
+<TR>
+                                <TD vAlign=top align=left height=1>
+                                <DIV align=center>
+                                <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                align=left border=0>
+                                <TBODY>
+                                <TR bgColor=#3271b4>
+                                <TD bgColor=#6a6969 height=17><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#ffffff size=-2><STRONG><FONT 
+                                color=#e0e0e0 size=-1>Invite New Members 
+                                »</FONT></STRONG></FONT></TD></TR>
+                                <TR bgColor=#3271b4>
+                                <TD vAlign=top bgColor=#fffffe height=0>
+                                <DIV align=center>
+                                <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD vAlign=top height=0>
+                                <DIV align=center>
+                                <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD vAlign=top height=0>
+                                <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD vAlign=top width="81%" height=0>
+                                <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD vAlign=top bgColor=#fffffe>
+                                <DIV align=center>
+                                <P<% if flash[:notice] -%>
+  <span class="flash_notice" id="flash_notice"><%= flash[:notice] %></span>
+<% end -%></P>
+                                <TABLE cellSpacing=1 cellPadding=1 width="90%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD bgColor=#cccc33 height=1>
+                                <DIV align=center>
+                                <TABLE cellSpacing=1 cellPadding=1 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD bgColor=#fffffe height=1>
+                                <DIV align=center>
+                                <TABLE cellSpacing=1 cellPadding=1 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD bgColor=#efefef height=0>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1><STRONG>You do not have permissions 
+                                needed to invite new members. You may, however, 
+                                nominate a friend for possible membership. 
+                                </STRONG><BR></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD bgColor=#fffffe>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1>If you have a friend who you think would 
+                                be a positive addition to our community, please 
+                                fill out the form. Your comments will be sent to 
+                                us and an application will be emailed to your 
+                                friend. </FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                color=#fffffe>xx</FONT><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1> </FONT></DIV></TD></TR>
+                                <TR>
+                                <TD height=27>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1><STRONG><FONT color=#a3310f>My 
+                                Name:</FONT></STRONG> </FONT><FONT 
+                                color=#fffffe>xx</FONT><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#666666 size=-1><STRONG><%= session[:user].First_Name %></STRONG></FONT></DIV></TD></TR>
+								
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1><STRONG><FONT color=#a3310f>Name of 
+                                person I would like to nominate 
+                                :</FONT></STRONG> </FONT><FONT 
+                                color=#fffffe></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1>
+								<%= text_field 'invitation','name', :style => 'width : 282px;' ,:id=>'name' %>
+								</FONT></DIV></TD></TR>
+								<TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1 color="#FF0000">
+								<%= error_message_on 'invitation','name' ,"Name Field ","",:style=>'height:5px;' %>
+								</FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1><STRONG><FONT color=#a3310f>Nominee's 
+                                email address : 
+                                </FONT></STRONG></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1><%= text_field 'invitation','email', :style => 'width : 282px;',:id=>'email' %>
+                                </FONT></DIV></TD></TR>
+								<TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1 color="#FF0000">
+								<%= error_message_on 'invitation','email' ,"Email Field ","",:style=>'height:5px;' %>
+								</FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1><STRONG><FONT color=#a3310f>Why I think 
+                                this person would make a good addition to the 
+                                S<FONT size=-2>EASONED</FONT> A<FONT 
+                                size=-2>DVENTURER</FONT> community 
+                                </FONT></STRONG><FONT 
+                                color=#a3310f><STRONG>:</STRONG></FONT> 
+                                </FONT><FONT 
+                                color=#fffffe>x</FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1><%= text_area('invitation','reason',:style => 'height:80px;width:350px;',:id=>'reason') %> 
+                                </FONT></DIV></TD></TR>
+								<TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1 color="#FF0000">
+								<%= error_message_on 'invitation','reason' ,"This Field ","",:style=>'height:5px;' %>
+								</FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1><STRONG><FONT color=#a3310f>Additional 
+                                Comments</FONT></STRONG><FONT color=#666666> 
+                                (optional)</FONT><FONT color=#a3310f><STRONG> 
+                                :</STRONG></FONT> </FONT><FONT 
+                                color=#fffffe>xx</FONT><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1><%= text_area('invitation','comment',:style => 'height:80px;width:350px;',:id=>'comment') %>  
+                                </FONT></DIV></TD></TR>
+								<TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1 color="#FF0000">
+								<%= error_message_on 'invitation','comment' ,"Comment Field ","",:style=>'height:5px;' %>
+								</FONT></DIV></TD></TR>
+                                <TR>
+                                <TD><FONT color=#fffffe>cx</FONT></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><%= submit_tag 'Submit'%> 
+                                </DIV></TD></TR>
+                                <TR>
+                                <TD><FONT 
+                                color=#fffffe>xcx</FONT></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD 
+                                background=Seasoned%20Adventurer%20-%20Invite%20New%20Members_files/dottedline-03.gif>
+                                <DIV 
+                                align=right></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#e0e0e0></FONT></DIV></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV></TD></TR> </TBODY></TABLE></DIV>
+<% end %>

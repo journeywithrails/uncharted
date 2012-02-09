@@ -1,0 +1,78 @@
+
+
+
+
+<body class="baddingbadge">
+
+<% if @list.size.blank? %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+<tr><td><div class="subheadingtwo">List of Admins</div></td></tr>
+  <tr>    
+  </tr><tr><td>
+  &nbsp;&nbsp;&nbsp;No Admins
+</td>
+</tr>
+</table>
+
+
+<% else %>
+
+
+
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+  	<tr><td><div class="subheadingtwo">List of Admins</div></td></tr>
+  
+  <tr>
+    <td align="left">Total number of Admin Users= <%= (@list).size %></td></tr>
+</table>
+
+
+<br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+    <td width="5%" align="center">SNo</td>
+    <td width="18%" align="center">NAME</td>
+    <td width="22%" align="center">EMAIL ID </td>
+    <td width="14%" align="center">DATE OF BIRTH</td>
+    <td width="17%" align="center">REGISTERED ON </td>
+    <td width="24%" align="center">ACTION</td>
+  </tr>
+  <% @count=0 %> 
+  <% for admin in @list %>  
+  <% @count=@count+1%>
+  <tr>
+    <td align="center"><%= @count %></td>
+    <td align="center" >
+	
+	<%= admin.user.First_Name %></td>
+    <td align="center">
+	<% if !admin.user.profile_image.blank? %>
+	<span TITLE='header=[Image] body=[<%= image_tag (url_for_file_column('admin.user_id', 'profile_image'), :style =>'width:80px;height:120px') %>]'><% end %>
+	<%= admin.user.email %></span></td>
+    <td align="center">
+	<% if !admin.user.profile_image.blank? %>
+	<span TITLE='header=[Image] body=[<%= image_tag (url_for_file_column('admin.user_id', 'profile_image'), :style =>'width:80px;height:120px') %>]'><% end %>
+	<%= (admin.user.birthday).to_date %></span></td>
+    <td align="center"><%= (admin.user.created_at).to_date %></td>
+    <td align="center">
+	<%= link_to image_tag("/images/show.png"),{:controller => 'profile', :action => 'show', :id => admin.user_id }, :title => "Click Here to View Admin profile"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-edit.gif"),{:controller => 'profile', :action => 'edit', :id => admin.user_id }, :title => "Click Here to Edit Profile" %>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:controller => 'user', :action => "delete", :id => admin.user_id}, :title => "Click Here to Delete Admin"%>
+	
+	</td>
+  </tr>
+   <% end %>
+  </table>
+ 
+</td>
+</tr>
+</table>
+
+
+
+
+<% end %>

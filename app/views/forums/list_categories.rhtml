@@ -1,0 +1,59 @@
+<% if @list.blank? %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+<tr><td align="left">No Forum Categories</td></tr></table>
+<% else %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+
+<tr><td><div class="subheadingtwo">List of Forum Categories</div></td></tr>
+<tr><td align="left"><%= link_to "Categories >>", :action => "list_categories"%> </td></tr>
+  <tr>
+  
+    <td >Total number of Forum Categories = <%= (@list).size %></td>
+  </tr>
+</table><br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+    <td width="5%" align="center">SNo</td>
+    <td width="18%" align="center">Title</td>
+    <td width="22%" align="center">Posts</td>
+    <td width="14%" align="center">Status</td>
+	<td width="14%" align="center">Created</td>
+    <td width="24%" align="center">ACTION</td>
+  </tr>
+  <% @count=0 %> 
+  <% for @forum_categories in @list %>  
+  <% @count=@count+1%>
+
+  
+  <tr>
+    <td align="center"><%= @count %></td>
+    <td align="center"><%= link_to @forum_categories.title, {:action => 'posts', :id => @forum_categories},:title => "Click Here to View Posts in this category"   %>
+	</td>
+    <td align="center">
+	<% if @forum_categories.forum_threads.length == 0%>No Posts<% else %>
+	<%= link_to @forum_categories.forum_threads.length, {:action=> 'posts', :id => @forum_categories.id}, :title => "Click Here to View Posts in this category" %><% end %>
+	</td>
+    <td align="center"><% if @forum_categories.active == 1 %>Active<% else %>Inactive<% end %>
+	</td>
+    <td align="center"><%= (@forum_categories.created_at).to_date.to_s(:long) %> </td>
+    <td align="center">
+	<%= link_to image_tag("/images/show.png"),{:action => 'show_category', :id => @forum_categories }, :title => "Click Here View Category"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-edit.gif"),{:action => 'edit_category', :id => @forum_categories }, :title => "Click Here to Edit Category"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:action => "delete_category", :id => @forum_categories},:confirm => 'Are you Really want to delete this Category.', :title => "Click Here to Delete Category"%>
+	</td>
+  </tr>
+  <% end %>
+  
+</table>
+
+
+
+
+
+<% end %>
+<br/><br/>
+ <div style="float:right;padding-right:30px"> <%= button_to 'Add New Category', {:action => 'new_category' }, :class => 'commonbut' , :style=>'width:130px' %> </div>

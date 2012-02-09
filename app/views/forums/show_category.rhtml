@@ -1,0 +1,77 @@
+<body class="baddingbadge">
+<%= stylesheet_link_tag 'style' %>
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;" class="inerfontkicolor">
+  <tr> <td><div class="subheadingtwo">Forum Category Details</div></td> </tr>
+  <tr><td style="padding-left:45px;"><%= link_to "Categories >>", :action => "list_categories"%> <%= (@list.title).humanize %> >> Details</td></tr>
+  <tr><td>&nbsp;</td></tr>
+  
+  </table><br />
+
+<br />
+
+
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Title </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= (@list.title).humanize %> 
+			</td>
+		</tr>
+
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Description </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= (@list.description).humanize %>  
+			</td>
+		</tr>
+				<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Created at</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= (@list.created_at).to_date.to_s(:long) %>
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Status</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<% if @list.active == 1%> Active<% else %>Inactive<% end %>
+			</td>
+		</tr>
+			<tr><td colspan ="3">&nbsp;</td></tr>					
+				
+ 		<tr>
+			<td width="15%" align="center" class="regtext1">
+				<%= button_to "Back", {:controller => 'forums', :action => 'list_categories'}, :class => 'commonbut'%>
+	
+			</td>
+			<td width="2%" align="center" class="regtext1">&nbsp;
+			 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= button_to "Edit", { :action => 'edit_category', :id => @list }, :class => 'commonbut'%>
+			
+			</td>
+		</tr>
+
+</table>
+<br/><br/>
+</body>

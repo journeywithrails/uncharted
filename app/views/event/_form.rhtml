@@ -1,0 +1,84 @@
+<%= javascript_include_tag "date_picker" %>
+<%= stylesheet_link_tag 'date_picker' %>
+
+
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2" >
+
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Event date </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			
+						<%= text_field 'event', 'event_date'  %>&nbsp;&nbsp;<input type=button value="Select Date" class="commonbut" onClick="displayDatePicker('event[event_date]');">
+			
+			</td>
+		</tr>
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :event, :event_date %>
+					 </font></td>
+					</tr>
+		
+								<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Event Title </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_field 'event', 'event_title'  %>
+			</td>
+		</tr>
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :event, :event_title %>
+					 </font></td>
+					</tr>
+				<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Event location </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_field 'event', 'event_location'  %>
+			</td>
+		</tr>
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :event, :event_location %>
+					 </font></td>
+					</tr>
+		
+		
+				<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Event description</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area 'event', 'event_description' , :class=> 'textarea'  %>
+			</td>
+		</tr>
+		
+						<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Approve</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= radio_button 'event', 'suggestion','1' , :checked =>"checked"%>Yes&nbsp;
+		    <%= radio_button 'event', 'suggestion','0' %>No&nbsp;
+			</td>
+		</tr>
+
+
+</table>
+

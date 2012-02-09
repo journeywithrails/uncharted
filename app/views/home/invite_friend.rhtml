@@ -1,0 +1,96 @@
+<head>
+<script type="text/javascript">
+function emailFormat() {
+
+if(document.getElementById('email').value == "")
+{
+alert("Email should not be Empty ");
+document.getElementById('email').value="";
+document.getElementById('email').focus();
+return false;
+}
+ var str =document.getElementById('email').value ;
+  var re = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,3}$/;
+    if (!str.match(re)) {
+        alert("Check Your Email Format like some@domain.com ");
+		document.getElementById('email').value="";
+		document.getElementById('email').focus();
+        return false;
+    } 
+        return true;
+    
+}
+</script>
+</head>
+
+
+<div class="breadCrumb">
+  <span>Invite Friend  
+  &raquo;</span>
+</div>
+<div class="mainContent">
+<table width="95%" height="250px;" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+  <td width="20%" height="250px;">
+  <% if session[:user].id == @profile.id %>
+  <%= link_to "Edit Profile", :controller => 'home', :action => 'edit', :id => @profile.id %>
+  <% end %>
+   
+  <div>
+  <p>	
+  <% if @profile.profile_image.blank? %>
+  <%= image_tag ("/images/temp-photo.gif"),:style => "height:250px;"%>
+  <% else %>
+  <%= image_tag (url_for_file_column('profile', "profile_image","main")) %>
+  <% end %>
+  </p>
+  </div>  
+  </td>
+  
+  <td width="5%">&nbsp;</td>
+  
+  <td>
+  <div class="profile">
+  
+    <label class="user"> <img alt="" src="/images/user_images/online.gif" /></label>
+    <span class="options">Invite Your Friend via Mail</span>
+<table width="95%" border="0" cellspacing="10" cellpadding="0" class="welcometext">
+
+
+
+<% if @message == "Sucess" %>
+
+
+<tr><td  height="100" valign="top" colspan="3"></td></tr>
+<tr>
+
+ <td align="center" height="10" valign="top" colspan="3"><b>Your Request to ' <%= params[:email]%> '  to Join in Seasoned Adventurer has been Mailed.</b></td>
+ 
+ 
+          </tr>
+<tr><td  height="100" valign="top" colspan="3"></td></tr>
+
+
+
+<% else %>
+
+
+
+
+<tr><td  height="10" valign="top" colspan="3"></td></tr>
+<tr><td>
+<p>Please Enter Your Friends Email to send an Request to Register in the Seasoned Adventurer.</p>
+
+<% form_for :emailform, :url => {:action => 'invite_friend'},:html => { :onSubmit =>'return emailFormat();'} do %>
+      <label>Email :</label>
+      <span><%= text_field_tag 'email'%></span>
+	 
+	 <span style="text-align:left;"><%= submit_tag 'send' %></span>		
+		   <% end %>
+		   <% end %>
+    <tr><td  height="80" valign="top" colspan="3"></td></tr>  
+</table>
+</td>
+</tr></table>
+
+</div>

@@ -1,0 +1,51 @@
+<% if @list.blank? %>
+No Reply for this Posts
+<% else %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+<tr><td><div class="subheadingtwo">List of Replys for the Post</div></td></tr>
+<tr><td align="left"><%= link_to "Categories >>", :action => "list_categories"%>&nbsp;<%= link_to "#{@category_title.title}>>" , :action =>'posts', :id => @thread.forum_category_id %> Posts </td></tr>
+
+  <tr>
+  
+    <td align="left">Total number of posts  = <%= (@list).size %></td>
+  </tr>
+</table><br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+    <td width="5%" align="center">SNo</td>
+    <td width="18%" align="center">subject</td>
+    <td width="22%" align="center">Comment</td>
+    <td width="14%" align="center">Posted By</td>
+	<td width="14%" align="center">Created</td>
+    <td width="24%" align="center">ACTION</td>
+  </tr>
+  <% @count=0 %> 
+  <% for post in @list %>  
+  <% @count=@count+1%>
+
+  
+  <tr>
+    <td align="center"><%= @count %></td>
+    <td align="center"><%= post.subject %>
+	</td>
+    <td align="center"><%= post.subject %>
+	</td>
+    <td align="center"><%= post.user.First_Name if !post.user.nil?%>
+	</td>
+    <td align="center"> <%= (post.created_at).to_date.to_s(:long) %></td>
+    <td align="center">
+	<%= link_to image_tag("/images/show.png"),{:action => 'show_post', :id => post }, :title => "Click Here View Details of the Post"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-edit.gif"),{:action => 'edit_post', :id => post }, :title => "Click Here to Edit Post"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:action => "destroy_post", :id => post}, :confirm => 'Are you Really want to delete this Post.', :title => "Click Here to Delete Post"%>
+	</td>
+  </tr>
+  <% end %>
+  
+</table>
+<% end %>
+<br/><br/>
+ <div style="float:right;padding-right:30px"> <%= button_to 'Post Reply', {:action => 'new_post', :thread_id => post.forum_thread_id,:id => post.forum_category_id }, :class => 'commonbut' %> </div>

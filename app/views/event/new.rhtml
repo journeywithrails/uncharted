@@ -1,0 +1,11 @@
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;">
+ <tr><td><div class="subheadingtwo">Suggest New Event</div></td></tr>
+</table><br />
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2" >
+  <tr><td>&nbsp;</td></tr>
+  <tr><td align="center"><%= submit_tag 'Submit', :class => 'commonbut' %></td></tr></table>
+
+<% end %>
+

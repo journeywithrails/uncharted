@@ -1,0 +1,58 @@
+<body class="baddingbadge">
+<%= stylesheet_link_tag 'style' %>
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;"class="inerfontkicolor" >
+  <tr> <td><div class="subheadingtwo">Post Details</div></td> </tr>
+ <tr><td style="padding-left:45px;"><%= link_to "Categories >>", :action => "list_categories"%> <%= link_to "#{@post.forum_category.title}" + '>>', :action => 'posts', :id => @post.forum_category.id %>  <%= @post.subject %> >> Details</td></tr>
+  <tr><td>&nbsp;</td></tr>  
+  
+  
+
+</table><br />
+
+<br />
+
+
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Subject </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @post.subject %> 
+			</td>
+		</tr>
+
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Content </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @post.content %>  
+			</td>
+		</tr>
+		
+			 <tr><td colspan="3">&nbsp;</td></tr>					
+				
+ 		<tr>
+			<td width="12%" align="center" class="regtext1">
+				<%= button_to "Back", {:controller => 'forums', :action => 'posts', :id => @post.forum_category_id}, :class => 'commonbut'%>
+	
+			</td>
+			<td width="2%" align="center" class="regtext1">&nbsp;
+			 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= button_to "Edit", { :action => 'edit_post', :id => @post }, :class => 'commonbut'%>
+			
+			</td>
+		</tr>
+
+</table>
+<br/><br/>
+</body>

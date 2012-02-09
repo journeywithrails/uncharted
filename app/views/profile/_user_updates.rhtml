@@ -1,0 +1,87 @@
+<% if @updates.size !=0 %>
+<div class="pageBottom dotted">
+ <br/>
+  <span><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-2 style="padding-left:28px;">Pending Networks</FONT>
+ </span>
+   </div>
+<table align="center" width="95%" border="0" cellspacing="0" cellpadding="0">
+ <tr><td>&nbsp;</td></tr>
+  <tr> 
+  <td>
+
+<% for user_update in @updates %>
+
+
+ <DIV class="profile_new">
+                                <TABLE cellSpacing=0 cellPadding=0 width="auto" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD>
+                                <DIV align="center">
+								<% if user_update.profile_image.blank?%>
+								<%= image_tag("/images/photo-coming-soon.gif") %>
+								<% else %>
+								<%=  image_tag (url_for_file_column(user_update, "profile_image",'thumbnail')) %>
+								<% end %>								
+								</DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align="center"><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+								<a href="<%= user_profile_url(:user=> user_update.id) %>"><%= (user_update.First_Name).humanize if !user_update.First_Name.nil? %> </a>
+								
+								</FONT></FONT></DIV></TD></TR>
+								<TR>
+                                <TD>
+                                <DIV align="center"><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2><%= ((user_update.City).to(10)).humanize if !user_update.City.nil? %> 
+                               
+                                </FONT></FONT></DIV></TD></TR>
+								<TR>
+                                <TD>
+                                <DIV align="center"><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>( <%= ((user_update.Country).to(10)).humanize if !user_update.Country.nil? %> ) 
+                              
+                                </FONT></FONT></DIV></TD></TR>
+
+								<TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+								
+								<a href="/<%=session[:user].id %>/mail/compose/<%= user_update.id %>"><%= image_tag("/images/contact.gif", :style => 'border:0;')%></a>Contact
+								
+								
+                                </FONT></FONT></DIV></TD></TR>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								 <TR>
+                                <TD>
+                                <DIV align="center"><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+								<%= link_to "Accept", {:controller => 'profile', :action => 'add_friend', :id => user_update.id}, :title => "Click Here to Add '#{user_update.First_Name}' to your Network List."%>&nbsp;|&nbsp;<%= link_to "Reject", {:controller => 'profile', :action => 'decline_friend', :id => user_update.id}, :title => 'Click here to Reject this friend from adding to your Network List.' %>                             </FONT></FONT></DIV></TD></TR>
+								
+								</TBODY></TABLE></DIV>	  
+	  <% end %>
+	 </td> </tr></table>
+   <div class="clearer">	
+   </div>	
+   
+	<% end %>

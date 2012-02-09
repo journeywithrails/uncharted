@@ -1,0 +1,45 @@
+ <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-2>
+								FEATURED <FONT 
+                                size=-1>S</FONT>EASONED <FONT 
+                                size=-1>A</FONT>DVENTURER ARTICLE : 
+                                </FONT></TD></TR>
+                                <TR>
+                                <TD vAlign=top>
+                                <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD width="19%" height=125>
+								<%= image_tag (url_for_file_column('article', "article_image","main")) %>								
+								</TD>
+                                <TD vAlign=top width="81%">
+                                <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><STRONG>
+								<%= @article.article_title %>								
+                                </STRONG></FONT></TD></TR>
+                                <TR>
+                                <TD vAlign=top>
+                                <P><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-1>
+								<%= @article.article_body %>
+								</FONT><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                size=-2><STRONG>(</STRONG></FONT><STRONG><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-2>
+								<%= link_to 'READ FULL ARTICLE', :controller => 'magazine', :action => 'list' %>)
+								</FONT></STRONG></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+                                <TR>
+                                <TD>&nbsp;</TD></TR></TBODY></TABLE>

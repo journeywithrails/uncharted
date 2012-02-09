@@ -1,0 +1,58 @@
+
+<body class="baddingbadge">
+<% if @list.blank? %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+<tr><td>No New Comments</td></tr>
+</table>
+<% else %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+  <tr><td><div class="subheadingtwo">List of New Comments</div></td></tr>
+  <tr><td align="left">Total number of New Comments = <%= (@list).size %></td></tr>
+</table>
+<br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+    <td width="5%" align="center">SNo</td>
+    <td width="22%" align="center">Commented By</td>
+    <td width="14%" align="center">Subject</td>
+    <td width="17%" align="center">Date </td>
+	<td width="24%" align="center">ACTION</td>
+  </tr> 
+  <% @count=0 %> 
+  <% for @feedback in @list %>  
+  <% @count=@count+1%>
+  <tr>
+    <td align="center"><%= @count %></td>
+    <td align="center"><%= @feedback.user.email %></td>
+    <td align="center"><%= (@feedback.Subject).humanize%></td>
+	<td align="center"><%= (@feedback.date).to_date.to_s(:long)%></td>
+	<td align="center">
+	<%= link_to_remote(image_tag("/images/but-delete.gif"), 
+                          :update => "ajax_div",
+						  :frequency => 2,
+						  :before => "Element.show('spinner')",
+                          :success => "Element.hide('spinner')",
+                          :url =>{:action => 'show', :id => @feedback.id}, :title => "Click Here to Edit role")  %> 
+	
+	
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:action => "delete", :id => @feedback}, :title => "Click Here to Delete Feedback",:confirm => "Are You Sure to Delete This Comment"%>
+	</td>
+  </tr>
+  <% end %>
+  
+ </table>
+ <div align="center">
+ <%= image_tag("spinner2.gif",
+              :align => "absmiddle",
+              :border => 0,
+              :id => "spinner",
+              :style =>"display: none;" ) %>
+ </div>		  
+			  
+   
+  <br/> 
+  <div id="ajax_div"> </div>
+  <% end %>
+ <br/><br/>

@@ -1,0 +1,82 @@
+<div class="breadCrumb">
+  <span> 
+   Forums &raquo;
+   <%if @category %>
+   <%= @category.title.titleize %> &raquo;   
+   <% elsif @category_title -%>
+    <%= @category_title %> &raquo;
+     <%if @thread_title%>
+     <%= @thread_title %> &raquo;
+     <% end -%>
+   <% end -%>
+  </span>
+</div>
+<!-- main content -->
+<div class="mainContent">
+  <% if flash[:notice] -%>
+  <span class="flash_notice" id="flash_notice"><%= flash[:notice] %></span>
+  <% end -%>
+  <p class="mailLinks">
+  	<% for category in @categories -%>
+  	  <a href="<%= forum_category_path(:category=>category.title.gsub(' ', '_')) %>"><%= (category.title).titleize %></a>&nbsp;/&nbsp;
+  	<% end -%>
+  	
+  </p>
+   <span class="spacer"></span>
+  <div class="usermail floaterLeft">
+  	<% if @type != 'category_list' -%>
+  	    <div style="text-align:right;"><img alt="" src="/images/forum-post.gif" /><a href="<%= new_forum_post_path(:category=>@category_title.gsub(' ', '_')) %>"> Write a new Post</a></div><br />
+  	    <% end -%>
+    <span class="title">
+    	
+    	<% if @category -%>
+    	<strong><%= @category.title.titleize %></strong>
+    	<% elsif @category_title -%>
+    	  <% if @thread_title -%>
+    	   <strong><%= @thread_title %></strong>
+    	  <% else -%>
+    	   <strong><%= @category_title %></strong>
+    	  <% end -%>
+    	<% else -%>
+    	<strong>Forums</strong>
+    	<% end -%>
+    </span>
+    <table id="forum_list">
+      <% if @type == "category_list" -%>
+	  
+      <%= render :partial=>"forum_category_table", :locals=>{:categories => @categories} %>
+	  
+      <% elsif @type == "threads_list" -%>
+      <%= render :partial=>"forum_thread_table", :locals=>{:threads=>@threads, :category=>@category} %>
+      <% elsif @type == "post_list" -%>
+      <%= render :partial=>"forum_post_table", :locals=>{:threads=>@threads, :category=>@category, :category_title=>@category_title, :thread_title=>@thread_title, :posts=>@posts} %>
+      <% end -%>
+ 
+    </table>
+    
+  </div>
+  <div class="usermail floaterRight" id="usermail_right">
+  	  <div id="post_list">
+  	  
+  	  <% if @sub_type == "new_reply" -%>
+  	  <%= render :partial=>"new_reply", :locals=>{:post_path =>@post_path, :category_title=>@cateogry_title, :thread_title=>@thread_title} %>
+  	  <% elsif @sub_type == "new_post" -%>
+  	  <%= render :partial=>"new_post", :locals=>{:post_path =>@post_path, :category_title=>@category_title} %> 
+  	  <% else -%> 	    
+      <% if @posts -%>
+      <%= render :partial=>"forum_post", :locals=>{:first=>true, :reply=>false, :posts=>@posts, :counter=>0, :total=>@posts.length - 1, :thread_title=>@thread_title, :thread_id=>@thread_id, :category_title=>@category_title}%>
+      <% end -%>
+      
+      
+      <% end %>
+      </div> 
+  </div>
+  <div class="clearer"></div>	
+  <div class="pageBottom dotted">
+    <br />
+    <span>Do you have a friend that you think would be a valuable addition to our community? SEASONED ADVENTURER is an invitation-only, private social network, but if you would like to suggest someone to be reviewed for possible membership, please 
+	<%= link_to 'suggest a member',:controller =>'home', :action => 'invite_new_member' %>.</span>
+  </div>   
+</div>
+
+      

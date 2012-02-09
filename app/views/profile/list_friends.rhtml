@@ -1,0 +1,129 @@
+<DIV align=center>
+                              <TABLE cellSpacing=9 cellPadding=0 width="100%" 
+                              border=0>
+                                <TBODY>
+<TR>
+                                <TD vAlign=top align=left height=2>
+                                <DIV align=center>
+                                <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                align=left border=0>
+                                <TBODY>
+                                <TR bgColor=#3271b4>
+                                <TD bgColor=#6a6969 height=17 align="left"><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#ffffff size=-2><STRONG><FONT 
+                                color=#e0e0e0 size=-1>My Network 
+                                »</FONT></STRONG></FONT></TD></TR>
+                                <TR bgColor=#3271b4>
+                                <TD bgColor=#fffffe height=3 align="left" ><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#e0e0e0><STRONG><FONT color=#6a6969 
+                                size=-2>
+								Sort by: 
+								<%= link_to "Last Log-In", :controller => 'profile', :action =>'search', :id => session[:user].id, :value => "last_login"  %>
+ | <%= link_to "Alphabetical Order", :controller => 'profile', :action =>'search', :id => session[:user].id, :value => "Alphabetical_Order"%> | 
+ <%= link_to "Largest Network",:controller => 'profile', :action =>'search', :id => session[:user].id, :value => "largest_network"%> |</FONT></STRONG></FONT></TD></TR>
+ <TR><TD>&nbsp;</TD></TR>
+ <% form_for :user ,:url=>{:controller => 'profile',:action=> 'search', :id => session[:user].id} do  %>
+                                <TR bgColor=#3271b4>
+                                <TD bgColor=#fffffe height=3 align="left"><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#e0e0e0><STRONG><FONT color=#6a6969 
+                                size=-2>Search Members: 
+                                </FONT></STRONG></FONT>
+								<%= text_field_tag 'user' %>
+								 <INPUT id=search type=submit value=Go! name=search></TD></TR>
+<% end %>								 
+                                <TR>
+                                <TD vAlign=top bgColor=#ffffff height=7>
+								 <DIV align=justify></DIV>
+								<% if @list.blank? %>
+								<DIV align=center >
+								<% if @message == 'search' %>
+								Your Search Found No Result.
+								<% else %>
+								You have not Added any Member to your Network list.
+								<% end %>
+								</DIV>
+                               <% else %>
+								<% for user in @list %>
+                                <DIV align=center class = "network" >
+								
+								
+								
+								
+                                <TABLE cellSpacing=0 cellPadding=0 width="55%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD>
+                                <DIV align=center>
+								<% if user.profile_image.blank?%>
+								<%= image_tag("/images/member_image.gif", :style =>'width:80px;height:120px;border:1') %>
+								<% else %>
+								<%=  image_tag (url_for_file_column(user, "profile_image",'medium'), :style =>'width:80px;height:120px;border:1') %>
+								
+								<% end %>
+
+								 
+								
+								</DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+								<% if user.logged_in == 1%>
+								<img alt="" src="/images/user_images/online.gif" />
+								<% end %>
+
+								
+								<a href="<%= user_profile_url(:user=>user) %>"><%= (user.First_Name).humanize if !user.First_Name.nil? %> </a> </FONT></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+                               <% if user.City.length > 10 %>
+                               <%= (user.City).humanize.slice(0,8)+'..' if !user.City.nil? %>
+							   <% else %>
+							    <%= (user.City).humanize if !user.City.nil? %>
+							   <% end  %>
+								
+								 </FONT></FONT></DIV></TD></TR>
+								 <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+                                 <% if user.Country.length > 10 %>
+                                (<%= (user.Country).humanize.slice(0,8)+'..' if !user.Country.nil? %> )
+								<% else %>
+								(<%= (user.Country).humanize if !user.Country.nil? %> )
+								<% end %>
+								
+								 </FONT></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+								
+								<a href="/<%=session[:user].id %>/mail/compose/<%= user.id %>"><%= image_tag("/images/contact.gif", :style => 'border:0;')%></a>
+								
+								Contact 
+                                </FONT></FONT></DIV></TD></TR></TBODY></TABLE></DIV>
+								
+								<% end %>
+								<% end %>
+                                <P align=justify></P></TD></TR>
+                                <TR>
+                                <TD vAlign=top bgColor=#ffffff height=1>
+                                <DIV align=right><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#6a6969 size=-2><STRONG>
+								<% if !@list.blank? %>
+								 <%= will_paginate @list %>
+								<% end %>
+								</STRONG></FONT></DIV></TD></TR></TBODY></TABLE></DIV></TD></TR>
+								</tr></table></div>

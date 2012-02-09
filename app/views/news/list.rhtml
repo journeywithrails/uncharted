@@ -1,0 +1,61 @@
+<%= javascript_include_tag "boxover_products" %>
+
+<body class="baddingbadge">
+
+<% if @news.blank? %>
+No SiteNews
+<% else %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+<tr><td><div class="subheadingtwo">List of SiteNews</div></td></tr>
+  <tr>
+  
+    <td align="left">Total number of News = <%= (@news).size %></td>
+  </tr>
+</table><br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+    <td width="5%" align="center">SNo</td>
+    <td width="18%" align="center">Name</td>
+    <td width="22%" align="center">Title</td>
+    <td width="14%" align="center">Description</td>
+	<td width="14%" align="center">Created</td>
+    <td width="24%" align="center">ACTION</td>
+  </tr>
+  <% @count=0 %> 
+  <% for @site_new in @news %>  
+  <% @count=@count+1%>
+
+  
+  <tr>
+    <td align="center"><%= @count %></td>
+    <td align="center"><%= @site_new.name %>
+	</td>
+    <td align="center"><%= @site_new.title%>
+	</td>
+    <td align="center"><%= @site_new.description.slice(0,20) + '....' %>
+	</td>
+    <td align="center"><%= (@site_new.created_at).to_date.to_s(:long) %></td>
+    <td align="center">
+	<%= link_to image_tag("/images/show.png"),{:action => 'show', :id => @site_new }, :title => "Click Here View News"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-edit.gif"),{:action => 'edit', :id => @site_new }, :title => "Click Here to Edit News"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:action => "delete", :id => @site_new}, :title => "Click Here to Delete News",:confirm => "Are You Sure To Delete This News " %>
+	</td>
+  </tr>
+  <% end %>
+  
+</table>
+
+<% end %>
+<br/><br/>
+ <div style="float:right;padding-right:30px"> <%= button_to 'Create New SiteNews', {:action => 'new' }, :class => 'commonbut', :style=>'width:150px' %> </div>
+</body>
+</html>
+
+
+
+
+

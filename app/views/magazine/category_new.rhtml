@@ -1,0 +1,14 @@
+
+<% form_for :article, :url => {:action => 'create_category'}, :html => {:onSubmit => 'return vaildcheck();'} do  %>
+<table width="90%" border="0" cellspacing="0" cellpadding="0" class="subtext2">
+  <tr>
+    <td width="30%"><b>New Category :</b></td>
+	<td width="40%"><%= text_field :category, :title, :id => 'category_title', :class=>"input"%></td>
+	<td width="20%"><%= submit_tag 'Submit' , :class => 'commonbut'%></td>
+  </tr>
+</table>
+
+ <% end %>
+
+
+

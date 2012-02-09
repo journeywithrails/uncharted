@@ -1,0 +1,54 @@
+
+
+
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+<tr><td><div class="subheadingtwo">List of Forum Categories</div></td></tr>
+
+<tr><td align="left"><%= link_to "Categories >>", :action => "list_categories"%>&nbsp;<%=  @category_title.title %> </td></tr>
+<% if @list.blank? %>
+<tr><td align="left">No Posts in this Category</td></tr>
+<% else %>
+<tr><td align="left">Total number of posts in this Categories = <%= (@list).size %></td></tr>
+</table><br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+    <td width="5%" align="center">SNo</td>
+    <td width="18%" align="center">subject</td>
+    <td width="22%" align="center">Reply</td>
+    <td width="14%" align="center">Posted By</td>
+	<td width="14%" align="center">Created</td>
+    <td width="24%" align="center">ACTION</td>
+  </tr>
+  <% @count=0 %> 
+  <% for thread in @list %>  
+  <% @count=@count+1%>
+
+  
+  <tr>
+    <td align="center"><%= @count %></td>
+    <td align="center"><%= thread.forum_posts.first.subject %>
+	</td>
+    <td align="center"> <% if thread.forum_posts.length == 1 %> No Reply <% else %><%= link_to thread.forum_posts.length - 1, {:action => 'reply_post',:id => thread.id}, :title => "Click Here to View Posts in this Category" %><% end %>
+	</td>
+    <td align="center"><%= thread.user.First_Name %>
+	</td>
+    <td align="center"> <%= (thread.forum_posts.first.created_at).to_date.to_s(:long) %></td>
+    <td align="center">
+	<%= link_to image_tag("/images/show.png"),{:action => 'show_post', :id => thread.forum_post_id }, :title => "Click Here View Category"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-edit.gif"),{:action => 'edit_post', :id => thread.forum_post_id }, :title => "Click Here to Edit Category"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/replay.jpg"), {:action => 'new_post', :thread_id => thread.id ,:id => @category_title.id }, :title => "Click Here to Post an Reply." %>
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:action => "destroy_post", :id => thread.forum_post_id}, :title => "Click Here to Delete Category",:confirm => "Are You Sure To Delete This Post " %>
+	
+	
+	</td>
+  </tr>
+ <% end %>
+ <% end %>
+</table>
+<br/><br/>
+ <div style="float:right;padding-right:30px"> <%= button_to 'Add New Post', {:action => 'new_post', :id => @category_title.id }, :class => 'commonbut' %> </div>

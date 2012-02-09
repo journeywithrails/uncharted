@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+        "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Seasoned Adventurer &#8211; Private social network for adventurous people over 50.</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen"/>
+  <%= stylesheet_link_tag "registration" %>
+  <%= javascript_include_tag 'registration' %>
+  </head>
+  <body>
+   <div class="main">
+    <div class="border">
+    <!-- header -->
+     <div class="header">
+      <div class="logo">
+        <img src="/images/logo_lrg_seasoned-adventure.gif" alt="Seasoned Adventurer &#8211; Private social network for adventurous people over 50" />
+      </div>
+      <div class="clearer"></div>
+     </div>
+     
+     <div class="headerNav">
+     <span class="cityRoom">&raquo; CityRoom Press</span>
+     <div class="clearer"></div>
+     </div>
+     <!-- main content -->
+     <div class="content">
+
+      <%= yield %>
+      
+      <div class="clearer"></div>
+     </div>
+     <!-- end content -->
+     <div class="regInfo dotted">
+      SEASONED ADVENTURER membership is free but selective. To request an application, contact <a href="mailto:info@seasonedadventurer.com">info@seasonedadventurer.com</a>. Applicants must be fifty years of age or older.
+     </div>
+    </div> 
+   </div>
+   <div class="copyright">Copyright &copy; 2007 - CityRoom Press - All Rights Reserved</div>
+  </body>
+</html>

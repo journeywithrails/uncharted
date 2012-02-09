@@ -1,0 +1,37 @@
+<div align="center"><img alt="" src="/images/suggest-event.gif" /><a href="<%= suggest_event_path %>"><strong>Suggest an event</strong></a></div><br />
+<% if months -%>
+<% for month in months -%>
+<div align="center" style="background-color:#efefef;">
+	<font color="#ffffff" face="Verdana, Arial, Helvetica, sans-serif">
+		<font color="#a3310f" size="+1"><%= month[:event_month] %> »</font>
+	</font>
+</div>
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+	<tbody>
+		<tr bgcolor="#f9f9f9"> 
+			<td width="23%"><div align="center"><font color="#333333" face="Verdana, Arial, Helvetica, sans-serif"><strong><font size="-2">Date</font></strong></font></div></td>
+			<td width="24%"><div align="center"><font color="#333333" face="Verdana, Arial, Helvetica, sans-serif"><strong><font size="-2">Location</font></strong></font></div></td>
+			<td width="53%"><div align="center"><font color="#333333" face="Verdana, Arial, Helvetica, sans-serif"><strong><font size="-2">Event</font></strong></font></div></td>
+        </tr>
+       
+        <% for event in month[:events] -%>
+        <tr> 
+        	<td><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="-1"><%= event.event_date.strftime('%B %d, %Y') %></font></div></td>
+        	<td><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="-1"><%= event.event_location %> </font></div></td>
+        	<td><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">
+			<a href="<%= details_url(:id=>event.id) %>"><%= event.event_title %></a>
+			
+			</font></div></td>
+        </tr>
+        <% end -%>
+        <tr> 
+        	<td>&nbsp;</td>
+        	<td>&nbsp;</td>
+        	<td>&nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+<% end -%>
+<% end -%>
+
+      

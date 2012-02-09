@@ -1,0 +1,21 @@
+<div class="breadCrumb">
+  <span><a href="#">Events</a> &raquo;</span>
+</div>
+<!-- main content -->
+<div class="mainContent">
+<% if flash[:notice] -%>
+  <span class="flash_notice" id="flash_notice"><%= flash[:notice] %></span>
+<% end -%>
+<div id="event_content">
+<% if @months -%>
+<%= render :partial=>"event_list", :locals=>{:months=>@months} %>
+<% else-%>
+<%= render :partial=>"suggest_event"%>
+<% end -%>
+</div>
+
+<div class="pageBottom dotted">
+    <br />
+    <span>Do you have a friend that you think would be a valuable addition to our community? SEASONED ADVENTURER is an invitation-only, private social network, but if you would like to suggest someone to be reviewed for possible membership, please <%= link_to 'suggest a member',:controller =>'home', :action => 'invite_new_member' %>.</span>
+</div>   
+</div>     

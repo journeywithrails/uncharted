@@ -1,0 +1,31 @@
+
+      <tr class="<%= cycle('row-a', 'row-b') -%>">
+        <td class="first"><%= mail_list.date_sent.strftime('%B %d, %Y')%></td>
+        
+        <%if mail_box == "inbox" -%>
+          <% if mail_list.user_read == 0 %>
+            <td><img src="/images/mail/mail_unread.gif" /></td>
+          <% elsif mail_list.user_read == 1 %>
+          <td><img src="/images/mail/mail_read.gif" /></td>
+          <% end %>
+              <td> <a href="<%= user_profile_url(:user=>mail_list.from_id.id) %>"><%=mail_list.from_id.First_Name%></a>
+			   </td>
+        <% else -%>
+        <td><img src="/images/mail/mail_read.gif" /></td>
+        <td><a href="<%= user_profile_url(:user=>mail_list.to_id.id) %>"><%=mail_list.to_id.First_Name%></a>
+		
+		</td>
+        <% end -%>
+              <td>
+			   <% if mail_list.user_read == 0 %>
+			  <b><a href="/<%=session[:user].id%>/mail/<%= @mail_box %>/show/<%= mail_list.id%>"><%= mail_list.subject %></a></b>
+			   <% elsif mail_list.user_read == 1 %>
+			   <a href="/<%=session[:user].id%>/mail/<%= @mail_box %>/show/<%= mail_list.id%>"><%= mail_list.subject %></a>
+			    <% end %>
+			  </td>
+			  
+        <% if mail_box == "inbox" -%>
+		
+        <td><a href="/<%=session[:user].id%>/mail/compose/<%=mail_list.from_id.id%>"><img src="/images/mail/mail_reply.gif" /></a></td>
+        <% end -%>
+      </tr>

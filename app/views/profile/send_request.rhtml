@@ -1,0 +1,36 @@
+<div class="breadCrumb">
+  <span><a href="#">Add Member to your Friends list</a> &raquo;</span>
+</div>
+<div class="mainContent"><a href="<%= user_profile_url(:user=>session[:user].id) %>">View Profile</a>
+  
+  
+  <div class="profileImage">
+
+
+      <p id="profile_image_container">	  
+	  <% if @profile.profile_image.blank? %>
+	  <%= image_tag ("/images/temp-photo.gif")%>
+	  <% else %>	   
+	  <%= image_tag (url_for_file_column("profile", "profile_image","main")) %>
+	  <%end%>
+	  </p>
+
+      
+   
+    </div>
+    <div class="profile">	
+ <% form_for :user_network, :url =>{ :action =>'request_save', :id => @profile.user_id } do  %>
+	  
+        <label for="profile[name]">Name :</label>
+        <span><%= @profile.name %></span>
+
+		<label for="work_life">Comment : (Please Type Few words About the '<%= @profile.name%>' )</label>
+        <span><textarea name="user_network[comment]" style="width:99%;height:50px;">  </textarea></span>
+		<span style="text-align:right;"><input type="submit" value="Add Member to Friends list" /></span>
+		
+		
+      <% end %>
+    </div>
+    <div class="clearer"></div>
+ 
+  </div>

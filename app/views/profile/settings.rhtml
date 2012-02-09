@@ -1,0 +1,129 @@
+
+<div class="breadCrumb">
+  <span>Editing Your Profile Settings  
+  &raquo;</span>
+</div>
+<!-- main content -->
+<div class="mainContent">
+  <% if flash[:notice] -%>
+  <span class="flash_notice" id="flash_notice"><%= flash[:notice] %></span>
+  <% end -%>
+<table width="95%" height="250px;" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+  <td width="20%" height="250px;">
+  <% if session[:user].id == @settings.user_id %>
+  <%= link_to "Edit Profile", :controller => 'profile', :action => 'edit', :id => @settings.user_id %>
+  <% end %>
+   
+  <div>
+  <p>	
+  <% if @settings.user.profile_image.blank? %>
+  <%= image_tag ("/images/temp-photo.gif"),:style => "height:250px;"%>
+  <% else %>
+  <%= image_tag (url_for_file_column(@settings.user, "profile_image","main")) %>
+  <% end %>
+  </p>
+  </div>  
+  </td>  
+  <td width="5%">&nbsp;</td>  
+  <td width="75%">
+   
+  <div class="settings">
+  
+    <label class="user"> <img alt="" src="/images/user_images/online.gif" />Settings</label>
+	
+   <table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2" >
+ <tr><td colspan="3" align="center">
+ <span style="font-family:verdana; font-size:10px; font-weight:bold; color:#B92828; text-align:left;">
+<%= error_messages_for 'user_settings' %> </span>
+
+</td></tr>
+<% form_for :settings, :url => {:controller => 'profile', :action => 'update_settings', :id => @settings.user_id }, :html => {:multipart => true} do  %> 
+
+        <tr><td colspan="3"><strong>Master Settings</strong></td></tr>
+
+		<tr>
+			<td width="71%" align="left" class="regtext1">
+			 I would like to receive occasional important email updates from Seasoned Adventurer</td>
+			<td width="5%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td>
+		   <div class="rdbutton"><%= radio_button 'settings', 'system_updates','1', :checked =>"checked"%>Yes&nbsp;
+		   <%= radio_button 'settings', 'system_updates','0' %>No&nbsp;	</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td width="71%" align="left" class="regtext1">
+			I would like to receive occasional email offers from Seasoned Adventurer's partners</td>
+			<td width="5%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="24%" align="left" class="regtext1">
+		    <%= radio_button 'settings', 'partner_offers','1' , :checked =>"checked"%>Yes&nbsp;
+		    <%= radio_button 'settings', 'partner_offers','0' %>No&nbsp;		  </td>	
+		</tr>
+		
+		
+				<tr>
+			<td width="71%" align="left" class="regtext1">
+			Send me an email when someone requests a network connection</td>
+			<td width="5%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="24%" align="left" class="regtext1">
+		      <%= radio_button 'settings', 'network_requests','1', :checked =>"checked" %>Yes&nbsp;
+		   <%= radio_button 'settings', 'network_requests','0' %>No&nbsp;				  </td>	
+				</tr>
+						
+								<tr>
+			<td width="71%" align="left" class="regtext1">
+			Send me an email when I have new mail</td>
+			<td width="5%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="24%" align="left" class="regtext1">
+         <%= radio_button 'settings', 'new_mail','1' , :checked =>"checked"%>Yes&nbsp;
+		   <%= radio_button 'settings', 'new_mail','0' %>No&nbsp;						</td>	
+								</tr>
+		
+		
+		
+		
+			<tr><td colspan="3"> <strong>Display Settings</strong></td></tr>
+			
+			
+			
+			
+			<tr>
+			<td width="71%" align="left" class="regtext1">
+			Display my year of birth along with the month and day on my profile</td>
+			<td width="5%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="24%" align="left" class="regtext1">			
+		    <%= radio_button 'settings', 'display_year','1' , :checked =>"checked"%>Yes&nbsp;
+		   <%= radio_button 'settings', 'display_year','0' %>No&nbsp;			  </td>
+		   </tr>
+		
+				
+			<tr>
+			<td width="71%" align="left" class="regtext1">
+			 Show when I am online</td>
+			<td width="5%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="24%" align="left" class="regtext1">
+			<%= radio_button 'settings', 'show_online','1' , :checked =>"checked"%>Yes&nbsp;
+		   <%= radio_button 'settings', 'show_online','0' %>No&nbsp;			  </td>
+		</tr>
+		<tr><td colspan="3">&nbsp;</td></tr>
+		<tr><td colspan="3" align="center"><%= submit_tag 'Update Settings' , :class => 'commonbut'%><% end -%></td></tr>
+</table>
+      </div>
+	  </td></tr></table>
+	  
+	<div class="clearer"></div>
+	
+	 <div class="pageBottom dotted">
+    <br />
+    <span>Do you have a friend that you think would be a valuable addition to our community? SEASONED ADVENTURER is an invitation-only, private social network, but if you would like to suggest someone to be reviewed for possible membership, please 
+	<%= link_to 'suggest a member',:controller =>'home', :action => 'invite_new_member' %>.</span>
+  </div>   
+       
+    </div>

@@ -1,0 +1,77 @@
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;">
+ <tr><td><div class="subheadingtwo">Event Details</div></td></tr>
+  
+</table><br /><br />
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Event Date </b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= (@event.event_date).to_date.to_s(:long) %> 
+			</td>
+		</tr>
+        		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Event Title</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @event.event_title%> 
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Event Location</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @event.event_location %> 
+			</td>
+		</tr>
+				<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Event Description</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= @event.event_description %> 
+			</td>
+		</tr>
+		
+						<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Status</b>
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b> 
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<% if @event.suggestion == 0 %> Unapproved <% elsif @event.suggestion == 1 %>Approved <% end %>
+			</td>
+		</tr>
+				</tr>
+				<tr><td colspan="3">&nbsp;</td></tr>
+				<tr>
+			<td width="15%" align="right" class="regtext1">
+			<%= button_to "Back", {:controller => 'event', :action => 'list'}, :class => 'commonbut'%>
+			
+			</td>
+			<td width="2%" align="center" class="regtext1">
+			
+			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= button_to "Edit", { :action => 'edit', :id => @event }, :class => 'commonbut'%>
+			
+			</td>
+		</tr>
+		</table>

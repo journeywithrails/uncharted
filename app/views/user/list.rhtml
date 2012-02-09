@@ -1,0 +1,97 @@
+
+<script type="text/javascript">
+function isEmpty(query)
+{
+
+if(document.getElementById('query').value=="")
+{
+alert("Please Enter Name or Email or Date Of Birth");
+document.getElementById('query').focus();
+return false;
+}
+}
+</script>
+
+<body class="baddingbadge">
+<% form_tag({:action=> "search"}, { :onSubmit => "return isEmpty('query');" }) do%>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+  <tr><td><div class="subheadingtwo">List of Users</div></td></tr>
+    <tr> 
+  <td align="right"> Search by Name/Email/Date Of Birth:&nbsp; <%= text_field_tag (:query)%>&nbsp;&nbsp;&nbsp;
+  <%= submit_tag "Search" , :class => 'commonbut' %></td>
+  </tr></table>
+ <% end %>
+<% if @users.blank? %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+  <tr>
+    <td align="left">There are no users.</td>
+  </tr>
+</table><br />
+
+<% else %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+  <tr>
+    <td align="left">Total number of Users= <%= (@total).size %></td>
+  </tr>
+</table><br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+    <td width="5%" align="center">SNo</td>
+    <td width="17%" align="center">NAME</td>
+    <td width="21%" align="center">EMAIL ID</td>
+    <td width="19%" align="center">Date of Birth</td>
+    <td width="17%" align="center">REGISTERED ON </td>
+    <td width="21%" align="center">ACTION</td>
+  </tr>
+  <% @count=0 %>
+  <% if params[:page] != nil%>
+  <% @count=5*(params[:page].to_i-1) %>
+  <% end %> 
+  <% for user in @users %>  
+  <% @count=@count+1%>
+  <tr>
+    <td align="center"><%= @count %></td>
+    <td align="center" >
+	
+	<% if !user.profile_image.blank? %>
+	<span TITLE='header=[Image] body=[<%= image_tag (url_for_file_column(user, 'profile_image','thumbnail'), :style =>'width:80px;height:120px') %>]'><% end %>	
+	<%= user.First_Name %></span></td>
+    <td align="center">
+	<% if !user.profile_image.blank? %>
+	<span TITLE='header=[Image] body=[<%= image_tag (url_for_file_column(user, 'profile_image','thumbnail'), :style =>'width:80px;height:120px') %>]'><% end %>
+	<%= user.email %></span></td>
+    <td align="center">
+	<% if !user.profile_image.blank? %>
+	<span TITLE='header=[Image] body=[<%= image_tag (url_for_file_column(user, 'profile_image','thumbnail'), :style =>'width:80px;height:120px') %>]'><% end %>
+	<%= user.birthday.to_s(:long) %></span></td>
+    <td align="center"><%= (user.created_at).to_date.to_s(:long)  %></td>
+    <td align="center">
+	<%= link_to image_tag("/images/show.png"),{:controller => 'user', :action => 'profile', :id => user }, :title => "Click Here to View User profile"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-edit.gif"),{:controller => 'user', :action => 'profile_edit', :id => user }, :title => "Click Here to Edit Profile" %>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:controller => 'user',:action => "delete", :id => user}, :confirm => 'Are you sure?', :method => :post, :title => "Click Here to Delete User"%>
+	
+	</td>
+	
+  </tr>
+  <% end %>
+  
+</table>
+<% end %>
+<br/>
+<div class="paginate" align="center">
+    <%= will_paginate (@users) %>
+	</div>
+
+<br/>
+ <div style="float:right;padding-right:30px"> <%= button_to 'Add New User', {:action => 'new' }, :class => 'commonbut' %> </div>
+</body>
+
+
+
+
+
+

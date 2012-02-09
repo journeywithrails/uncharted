@@ -1,0 +1,267 @@
+ <%= javascript_include_tag 'profile_edit' %>
+
+<table width="750px" border="0" cellspacing="0" cellpadding="0" style="border-bottom:#CCCCCC 1px solid; border-collapse:collapse;">
+  <tr>
+    <td>
+
+
+<div class="subheadingtwo">Edit Profile </div>
+ <br/>
+ 
+	</td>
+  </tr>
+</table>
+<br />
+
+  <% if flash[:notice] -%>
+  <span class="flash_notice" id="flash_notice"><%= flash[:notice] %></span>
+  <% end -%>
+  <br />
+
+<% form_for :profile, :url => {:controller => 'user', :action => 'profile_update', :id => @user }, ,:html => {:onSubmit => 'return isReg();',:multipart => true} do  %>
+	
+
+<table width="90%" cellpadding="4" cellspacing="0" border="0" align="center" class="subtext2">
+
+		     <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >First Name </b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_field :user, :First_Name,:id=>'First_Name' %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :name %></font></td>
+		    </tr>
+		
+		    		     <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Last Name </b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_field :user, :Last_Name, :id=>'Last_Name' %>	</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :Last_Name %></font></td>
+		    </tr>
+			
+								    		     <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Gender </b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_field :user, :Gender %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :Gender %></font></td>
+		    </tr>
+											    		  	
+			
+			
+           <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Primary Address </b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area :user, :primary_residence ,:id=>'primary_residence', :class=> 'textarea'%>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :primary_residence %></font></td>
+		    </tr>
+			  
+			
+			
+	 <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >City </b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_field :user, :City,:id=>'City'%>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :City %></font></td>
+		    </tr>
+			
+				 <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >State </b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_field :user, :State,:id=>'State' %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :State %></font></td>
+		    </tr>
+			
+							 <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Country</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= country_select :user, :Country, ["Select a Country","United States", "Canada"] ,:id=>'user[Country]',:prompt =>'Select a Country' %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :Country %></font></td>
+		    </tr>
+			
+		
+		<tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Birthday</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+<%= text_field 'user', 'birthday'  %>&nbsp;&nbsp;<input type=button value="Select Date" class="commonbut" onClick="displayDatePicker('user[birthday]');">			</td>
+		</tr>
+		<tr><td></td><td></td>
+					 <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :birthday %>
+					 </font></td>
+					</tr>
+			
+           <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Places Lived</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area :user, :places_lived, :id=>'places_lived', :class=> 'textarea'  %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :places_lived %></font></td>
+		    </tr>
+			
+		   <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Places Traveled</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area :user, :places_traveled, :id=>'places_traveled', :class=> 'textarea'  %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :places_traveled %></font></td>
+		    </tr>
+			
+					   <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Personal Interested</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area :user, :personal_interests,:id=>'personal_interests', :class=> 'textarea'  %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :personal_interests %></font></td>
+		    </tr>
+			
+								   <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Interesting places to see</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area :user, :places_to_see, :class=> 'textarea'  %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :places_to_see %></font></td>
+		    </tr>
+			
+											   <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Work Life</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area :user, :work_life,:id=>'work_life', :class=> 'textarea'  %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :work_life %></font></td>
+		    </tr>
+			
+	      <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Future plans</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= text_area :user, :future_plans,:id=>'future_plans', :class=> 'textarea'  %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :future_plans %></font></td>
+		    </tr>
+			
+				      <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Profile Image</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+			<%= file_column_field 'user', 'profile_image', :size => '30%' %>			</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :profile_image %></font></td>
+		    </tr>
+
+			
+	
+			
+					    <tr>
+			<td width="15%" align="left" class="regtext1">
+			<b >Industry</b>			</td>
+			<td width="2%" align="center" class="regtext1">
+			<b>:  </b>			</td>
+			<td width="68%" align="left" class="regtext1">
+		<%=select :user,:industry,User::INDUSTRY_TYPES,:prompt => "Select a Industry Type",:style=>"width:150px"%>		</td>
+		    </tr>
+			
+		    <tr>
+		    <td></td><td></td>
+		    <td align="left"> <font color="#FF0000" ><%= error_message_on :user, :industry %></font></td>
+		    </tr>
+			
+											
+
+<tr>
+
+<td width="15%" height="30px"><%= link_to image_tag('/images/cancel_button.jpg'), {:controller => 'user', :action => 'list'}%></td>
+<td colspan="2" align ="left" height="30px">
+  <%= submit_tag 'Submit', :class => 'commonbut' %></td>
+</tr>
+</table>
+<% end -%>
+<br/><br/>

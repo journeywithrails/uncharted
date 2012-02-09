@@ -1,0 +1,34 @@
+    <% for post in posts %>
+    <% if first == true -%>
+    <% reply_path = new_forum_reply_path(:category=>category_title.gsub(' ', '_'),:id=>thread_id, :thread=>thread_title)  -%>
+    <div style="text-align:right;"><img alt="" src="/images/forum-reply.gif" /><a href="<%= reply_path %>"> Post Reply</a></div><br />
+    <span class="title"><strong><%= post.subject %></strong></span>
+    <% end -%>
+    <p>
+      <span>Posted By <a href="<%= user_profile_url(:user=>post.user_id) %>"><%=post.user.First_Name %></a></span>
+      <span class="date"><%= post.created_at.gmtime.strftime('%B %d, %Y at %I:%M%p GMT') %></span>
+      <span class="spacer"></span>
+    </p>
+    <p>
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+      <%= (h(post.content).gsub("&lt;br /&gt;", "<br />")) %>
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+    </p>
+    
+    <% if first == true -%>
+    <span class="title"><strong>Replies:</strong></span>
+    <span class="spacer"></span>
+    <% first = false %>
+    <% else -%>
+    <span class="spacer"></span>
+    <% end -%>
+    <% if counter == total -%>
+    <div style="text-align:right;"><img alt="" src="/images/forum-reply.gif" /><a href="<%= reply_path %>"> Post Reply</a></div><br />
+    <% end -%>
+    <% counter = counter + 1 -%>
+     <% end -%>
+    

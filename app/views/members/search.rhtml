@@ -1,0 +1,213 @@
+
+<div class="breadCrumb">
+  <span>Browse Members</span>
+</div>
+<div class="mainContent" align="center">
+ <% form_for :user ,:url=>{:controller => 'members',:action=> 'list'} do  %>
+ <table width="90%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666666;">
+
+ 
+              <tr>
+                <td width="113" height="16px" colspan="5" valign="top" class="member" bgcolor="#6A6969"><font color="#E3E3E3">&nbsp;&nbsp;Member Search</font></td>
+              </tr>
+              
+              <tr>
+                <td colspan="5" height="2px" bgcolor="#575757"></td>
+              </tr>
+              <tr>
+                <td colspan="5" height="15px"></td>
+              </tr>
+              <tr>
+          <td colspan="5" height="15px" valign="top">
+		  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                  <tr>
+                    <td width="40%" valign="top"><table align="center" width="90%" border="0" cellspacing="0" cellpadding="0">
+                       <tr>
+                        <td class="personal">&nbsp;</td>
+                        <td width="10px">&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="search" align="left">First Name</td>
+                        <td align="center">:</td>
+                        <td align="left"><%= text_field 'user','First_Name',:name=>"First_Name" %></td>
+                      </tr>
+                      <tr>
+                        <td class="search" align="left">City</td>
+                        <td align="center">:</td>
+                        <td align="left" height="30px"><%= text_field 'user','City',:name=>"City" %></td>
+                      </tr>
+
+                      <tr>
+                        <td class="search" align="left">State</td>
+                        <td align="center">:</td>
+                        <td align="left" height="30px"><%= text_field 'user','state',:name=>"state" %></td>
+                      </tr>
+					                        <tr>
+                        <td class="search" align="left"> Gender:</td>
+                        <td align="center">:</td>
+                        <td valign="top" align="left">
+						<table width="67%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td width="9%"><%= radio_button_tag'Gender', 'male',  :style=>'width:10px;' %></td>
+                              <td width="11%" class="search">&nbsp;Male</td>
+                              <td width="9%"><%= radio_button_tag 'Gender','female',  :style=>'width:10px;' %></td>
+                              <td width="71%" class="search">&nbsp;Female</td>
+							  <td width="9%"><%= radio_button_tag 'Gender','both',  :style=>'width:10px;' %></td>
+                              <td width="71%" class="search">&nbsp;Both</td>
+                            </tr>
+                        </table></td>
+                      </tr>
+                      
+					  
+                      <tr>
+                        <td class="search" align="left">Keywords</td>
+                       <td align="center">:</td>
+                        <td align="left"><%= text_field 'user','key_words',:name=>"key_words" %></td>
+                      </tr>
+                      
+                    </table></td>
+                    
+                    <td width="60%" valign="top">
+					<table width="96%" border="0" cellspacing="0" cellpadding="0" align="left">
+                      
+                      <tr>
+                        <td width="25%">&nbsp;</td>
+                        <td width="10">&nbsp;</td>
+                        <td width="70%">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="search" align="left">Last Name </td>
+                        <td align="center" width="10">:</td>
+                        <td align="left"><%= text_field 'user','Last_Name',:name=>"Last_Name"  %></td>
+                      </tr>
+                      <tr>
+                        <td class="search" align="left">Country</td>
+                        <td align="center" width="10">:</td>
+                        <td align="left" height="30">
+			<%= country_select (:user, :Country, ["","United States", "Canada"] ,:name=>'Country', :style=>"width:200px;") %></td>
+                      </tr>
+                      
+                      
+                      
+                      <tr>
+                        <td class="search" align="left">Online Now</td>
+                       <td align="center" width="10">:</td>
+                        <td align="left" height="30"><%= check_box_tag "user","0",checked=false, {:name => "user[status]"} %> </td>
+                      </tr>
+                      <tr>
+                        <td class="search" align="left">Search in my<br />
+                          network only </td>
+                        <td align="center" width="10">:</td>
+                        <td align="left" height="30"><%= check_box_tag "user","0",checked=false, {:name => "user[network]"} %></td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td colspan="5" align="center" height="35px"><%= submit_tag 'Search'%></td>
+              </tr>
+			  <tr>
+			  <td height="5px">			  </td>
+			  </tr>
+			  
+  </table>
+	<% end %>		
+	<br/>
+	
+	 <% if !@list.blank? %>
+	 <div class="breadCrumb" align="left"> Your Search Result </div>	
+<table align="center" width="95%" border="0" cellspacing="0" cellpadding="0"> 
+  <tr>  
+    <td>	
+	 <DIV align=justify></DIV>
+								<% for profile in @list %>
+                                <DIV align=center class = "network" >
+								
+								
+								
+								
+                                <TABLE cellSpacing=0 cellPadding=0 width="auto" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD>
+                                <DIV align=center>
+								<% if profile.profile_image.blank?%>
+								<%= image_tag("/images/member_image.gif") %>
+								<% else %>
+								<%=  image_tag (url_for_file_column(profile, "profile_image",'medium')) %>
+								<% end %>
+
+								
+								
+								</DIV></TD></TR>
+                                <TR>
+                                <TD  >
+                                <DIV align=center style="height:18px;"><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+								<% if profile.logged_in == 1%>
+								<img alt="" src="/images/user_images/online.gif"   />
+								<% end %>
+
+								
+								<a href="<%= user_profile_url(:user=> profile.id) %>"><%= (profile.First_Name).humanize if !profile.First_Name.nil? %>  <%= (profile.Last_Name).humanize if !profile.Last_Name.nil? %></a> </FONT></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+         <% if !profile.City.nil? && profile.City.length > 11 %>
+         <%= (profile.City).humanize.slice(0,10)+'..'  %>  
+		 <% else %>
+		 <%= (profile.City).humanize  if !profile.City.nil? %>  
+		 <% end %>                    
+								
+								 </FONT></FONT></DIV></TD></TR>
+								                                 <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+                                <% if !profile.Country.nil? && profile.Country.length > 11 %>
+                                (<%= (profile.Country).humanize.slice(0,10)+'..'  %> )
+								<% else %>
+								(<%= (profile.Country).humanize if !profile.Country.nil? %> )
+								<% end %>
+								 </FONT></FONT></DIV></TD></TR>
+                                <TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+								
+								<a href="/<%=session[:user].id %>/mail/compose/<%= profile.id %>"><%= image_tag("/images/contact.gif", :style => 'border:0;')%></a>
+								
+								Contact 
+                                </FONT></FONT></DIV></TD></TR>
+								<TR>
+                                <TD>
+                                <DIV align=center><FONT 
+                                face="Verdana, Arial, Helvetica, sans-serif" 
+                                color=#333333 size=-1><FONT size=-2>
+								<% check_friend = UserNetwork.find(:first, :conditions => ['user_id LIKE ? AND friend_id like ? AND status LIKE ?',session[:user].id,profile.id,1])%>
+								<% if check_friend.blank? %>
+								<%= link_to "Add to Network", {:controller => 'profile', :action => 'send_request', :id => profile.id}, :confirm => 'Are you sure you want to connect with this member?',:method => :post %>
+								<% else %>
+								&nbsp;
+								<% end %>
+								</font>
+                                </TD>
+								
+								</TR></TBODY></TABLE></DIV>
+								
+								<% end %>
+                                <P align=justify></P>
+								</td>
+
+ </tr>
+</table><% end  %>
+<br/>
+</div>

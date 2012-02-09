@@ -1,0 +1,60 @@
+/* CSS Document */
+
+.search
+{
+font-family:Arial, Helvetica, sans-serif;
+color:#000000;
+font-size:12px;
+text-align:left;
+}
+.personal
+{
+font-family:Arial, Helvetica, sans-serif;
+color:#000000;
+font-size:12px;
+font-weight:bold;
+text-align:left;
+padding-left:10px;}
+
+.persona3
+{
+font-family:Arial, Helvetica, sans-serif;
+color:#000000;
+font-size:12px;
+font-weight:bold;
+padding-right:10px;}
+.star
+{
+color:#FF0000;}
+
+.commoninput{width:150px;}
+.member
+{
+font-family:Arial, Helvetica, sans-serif;
+color:#000000;
+font-size:12px;
+font-weight:bold;
+text-align:left;
+padding-left:10px;
+height:30px;
+line-height:30px;
+}
+.box
+{
+width:100px;
+height:20px;
+margin-left:30px;
+float:left;
+}
+.select
+{
+width:220px;
+}
+.select1
+{
+width:150px;
+}
+img
+{
+border:0px;
+}

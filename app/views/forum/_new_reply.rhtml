@@ -1,0 +1,23 @@
+    
+	<%= javascript_include_tag 'newreply' %> 
+	<div style="text-align:right;visibility: hidden;"><img alt="" src="/images/forum-reply.gif" /><a href=""> Post Reply</a></div><br />
+    <span class="title"><strong>Reply to <%= thread_title.gsub('_', ' ')%></strong></span>
+    <p>
+      <span>Posted By <a href="<%= user_profile_url(:user=>session[:user].id) %>"><%=session[:user].First_Name %></a></span>
+      <span class="spacer"></span>
+    </p>
+    <p>
+      <form name=replyform action="<%= post_path %>" method="post" onsubmit = "return valid()">
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+      Message:<br />
+      <textarea name="content" style="width:95%;height:300px;" id="msg"></textarea>
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+      <input type="submit" value="Submit" >
+      <span class="spacer"></span>
+      <span class="spacer"></span>
+    </p>
+    
+   
+    

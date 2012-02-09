@@ -1,0 +1,82 @@
+8
+
+dir
+21
+https://svn.tomfmason.net/svn/seasonedadventurer/trunk/seasonedadventurer/vendor/plugins/will_paginate
+https://svn.tomfmason.net/svn/seasonedadventurer
+
+
+
+2007-09-17T07:29:44.074801Z
+2
+tomfmason
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+101b2f53-4338-0410-998b-f98c8408ca18
+
+test
+dir
+
+LICENSE
+file
+
+
+
+
+2007-11-05T14:02:22.000000Z
+4f07f0b985927be06dcc54950ba5a1b9
+2007-09-17T07:29:44.074801Z
+2
+tomfmason
+
+Rakefile
+file
+
+
+
+
+2007-11-05T14:02:22.000000Z
+c78922e0e6770c0cab07cfd6b728fd9f
+2007-09-17T07:29:44.074801Z
+2
+tomfmason
+
+init.rb
+file
+
+
+
+
+2007-11-05T14:02:22.000000Z
+e80c4d07e97dd51ac54e70b9734d9a10
+2007-09-17T07:29:44.074801Z
+2
+tomfmason
+
+lib
+dir
+
+README
+file
+
+
+
+
+2007-11-05T14:02:22.000000Z
+3a3eb21679c232234d701b0b0f26f7b1
+2007-09-17T07:29:44.074801Z
+2
+tomfmason
+

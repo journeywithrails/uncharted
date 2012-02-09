@@ -1,0 +1,68 @@
+<%= javascript_include_tag "boxover_products" %>
+
+<body class="baddingbadge">
+
+<% if @products.blank? %>
+No Products
+<% else %>
+<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+<tr><td><div class="subheadingtwo">List of Products</div></td></tr>
+  <tr>
+  
+    <td align="left">Total number of Products = <%= (@products).size %></td>
+  </tr>
+</table><br />
+<table width="98%"  border="0" cellspacing="2" cellpadding="2" class="tableborder" align="center">
+<tr class="subheadingone">
+    <td width="5%" align="center">SNo</td>
+    <td width="18%" align="center">Name</td>
+    <td width="22%" align="center">Title</td>
+    <td width="14%" align="center">Price</td>
+    <td width="17%" align="center">Created On </td>
+    <td width="24%" align="center">ACTION</td>
+  </tr>
+  <% @count=0 %> 
+  <% for @product in @products %>  
+  <% @count=@count+1%>
+
+  
+  <tr>
+    <td align="center"><%= @count %></td>
+    <td align="center">
+	<span TITLE='header=[Product Image] body=[<%= image_tag (url_for_file_column('product', 'image'), :style =>'width:144px;height:100px') %>]'>
+	<%= (@product.name).humanize %></span></td>
+    <td align="center">
+	<span TITLE='header=[Product Image] body=[<%= image_tag (url_for_file_column('product', 'image'), :style =>'width:144px;height:100px') %>]'>
+	<%= (@product.title).humanize %></span>	
+	</td>
+    <td align="center">
+		<span TITLE='header=[Product Image] body=[<%= image_tag (url_for_file_column('product', 'image'), :style =>'width:144px;height:100px') %>]'>
+	<%= @product.price %>/-</span>
+	
+	</td>
+    <td align="center"><%= (@product.created_at).to_date.to_s(:long) %></td>
+    <td align="center">
+	<%= link_to image_tag("/images/show.png"),{:action => 'show', :id => @product }, :title => "Click Here View Product"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-edit.gif"),{:action => 'edit', :id => @product }, :title => "Click Here to Edit Product"%>
+	
+	&nbsp;
+	<%= link_to image_tag("/images/but-delete.gif"),{:action => "delete", :id => @product}, :title => "Click Here to Delete Product", :confirm => "Are You Sure To Delete This Product" %>
+	
+	</td>
+  </tr>
+  <% end %>
+  
+</table>
+
+<% end %>
+<br/><br/>
+ <div style="float:right;padding-right:30px;width:30px"> <%= button_to 'Create New Product', {:action => 'new' }, :class => 'commonbut', :style=>'width:150px'  %> </div>
+</body>
+</html>
+
+
+
+
+

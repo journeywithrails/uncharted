@@ -1,0 +1,183 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Seasoned Adventurer Admin Module</title>
+<%= stylesheet_link_tag 'admin' %>
+<%= stylesheet_link_tag 'newadmin' %>
+<%= javascript_include_tag 'defaults' %>
+<%= javascript_include_tag 'prototype' %>
+<%= javascript_include_tag "boxover" %>
+<%= javascript_include_tag 'date_picker' %>
+<%= stylesheet_link_tag 'date_picker' %>
+<%= stylesheet_link_tag 'style' %>
+
+<style>
+
+</style>
+<script>
+function vaildcheck()
+{
+	if(document.getElementById('category_title').value=="")
+	{
+		alert("Category Title should not be empty");
+		document.getElementById('category_title').focus();
+		return false;
+	}
+return true;
+}
+</script>
+</head>
+
+<body class="baddingbadge" >
+<center>
+  <table align="center" width="997px" border="0" cellspacing="0" cellpadding="0" style="margin:10px 0px 0px 0px;">
+  <tr>
+    <td valign="top">
+	<table align="center" width="973" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="973" height="13px"></td>
+      </tr>
+      <tr>
+        <td valign="top">
+		<table width="972" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #e1e1e1; border-collapse:collapse;">
+          <tr>
+            <td valign="top" bgcolor="#ffffff">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td valign="top">
+				<table align="center" width="956" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td height="10px;"></td>
+                  </tr>
+                  <tr>
+                    <td valign="top">
+					<table width="956" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td><table width="956" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td width="944px" style="background:url(/images/headerr-topbg.jpg); background-repeat:repeat-x; height:75px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td width="50%" align="center" valign="top"><img src="/images/logo-admin.jpg" width="357" height="60"></td>
+                                <td><table align="right" width="350" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="326px" style="background:url(/images/bg-links.gif); height:75px;" valign="top"><table align="center" width="300px" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+<td width="100px" align="center">
+<%= link_to image_tag("/images/but-administration.gif"), :controller => 'admin', :action => 'home',:id => session[:user].id %> </td>
+                                          <td width="100px" align="center">
+										 
+<%= link_to image_tag("/images/but-myaccount.gif"),:controller => 'admin', :action => 'profile', :id => session[:user].id %> </td>
+                                          <td width="100px" align="center">
+<%= link_to image_tag("/images/but-logoff.gif"),:controller => 'admin', :action => 'logout' %> </td>
+                                        </tr>
+                                    </table></td>
+                                    <td width="24px"></td>
+                                  </tr>
+                                </table></td>
+                              </tr>
+                            </table></td>
+                          </tr>
+                        </table></td>
+                      </tr>
+                      <tr>
+                        <td height="10px"></td>
+                      </tr>
+                      <tr>
+                        <td valign="top">
+						<table width="956" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td width="200" height="400px" valign="top">
+							<table align="center" width="185" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td align="center" height="80px"></td>
+                              </tr>
+                              <tr>
+                                <td>
+									<div id="leftbar">
+											<ul>
+<li>
+<%= link_to 'Administrator', {:controller => 'admin', :action => 'list'}, :title=> "Click Here to View Admin Users details" %></li>
+<li><%= link_to 'Users', {:controller => 'user', :action => 'list'}, :title => "Click Here to View Users details" %></li>
+<li><%= link_to 'Events',  {:controller => 'event', :action => 'list'}, :title=> "Click Here to View Events" %></li>
+<li><%= link_to 'Products', {:controller => 'products', :action => 'list'}, :title=> "Click Here to View Products" %></li>
+<%#= link_to 'Orders', {:controller => 'orders', :action => 'list'}, :title=> "Click Here to View Orders" %>
+<li><%= link_to 'Articles', {:controller => 'magazine'}, :title=> "Click Here to View Articles" %></li>
+<li><%= link_to 'Forum', {:controller => 'forums', :action=>'list_categories'}, :title=> "Click Here to View Forums" %></li>
+<li><%= link_to 'News', {:controller => 'news', :action => 'list'}, :title=> "Click Here to View News" %></li>
+<li><%= link_to 'Comments', {:controller => 'feed_back', :action => 'list'},:title => "Click Here to View Comments" %></li>
+<li><%= link_to 'Banners', {:controller => 'banners', :action => 'index'},:title => "Click Here to Manage Banner Images" %></li>
+<li><%= link_to 'Logout',{:controller => 'admin', :action => 'logout'}, :title => "Click Here to Logout" %></li>
+		
+											</ul>
+									</div>
+								</td>
+                              </tr>
+                              <tr>
+                                <td>&nbsp;</td>
+                              </tr>
+                            </table></td>
+                            <td width="10" bgcolor="#fffae9">&nbsp;</td>
+                            <td width="746px" valign="top">
+							<table width="98%" cellspacing="2" cellpadding="2" class="inerfontkicolor" align="center">
+  <tr>
+    <td align="left">
+    <% if flash[:notice] %>
+	 <div id="notice">
+	 <%= flash[:notice] %>
+	</div>
+	<% end %>
+	</td>
+  </tr>
+</table><br />
+	
+							 <%= yield %>
+							
+							
+							</td>
+                          </tr>
+                        </table></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;
+						
+						</td>
+                      </tr>
+                      <tr>
+                        <td valign="top">
+						<table align="center" width="956" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td bgcolor="#efead8" width="20px">&nbsp;</td>
+                            <td bgcolor="#efead8"  height="52px" align="left"><font class="footer">&copy; 2007 Seasoned Adventurer All Rights Reserved</font></td>
+                            </tr>
+                        </table>
+						</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" height="10px"></td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                  <tr>
+                    <td height="10px"></td>
+                  </tr>
+                </table>
+				</td>
+              </tr>
+            </table>
+			</td>
+          </tr>
+        </table>
+		</td>
+      </tr>
+      <tr>
+        <td height="13px"></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</center>
+</body>
+</html>
+
+</body>
+</html>

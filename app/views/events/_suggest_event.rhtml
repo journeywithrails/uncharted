@@ -1,0 +1,42 @@
+<%= javascript_include_tag "suggestevent" %>
+      <div class="usermail compose">
+	  <br/>
+       <span class="title"><strong>&nbsp;&nbsp;Suggest Event</strong></span>
+        <span class="spacer"></span>
+        <form action="<%= post_event_path %>" method="post" onsubmit="return isEmpty();">
+        <span class="spacer"></span>
+        <span><b>Event Date:</b></span>
+        <span class="spacer"></span>
+        <span><%=datetime_select("event", "event_date", :start_year=>Time.now.year,:order => [ :month,:day,:year])%></span>
+        <span class="spacer"></span>
+		 <span><b>Title:</b></span>
+        <span class="spacer"></span>
+        <span><input type="text" name="event[event_title]" id="title" /></span>
+		<span class="spacer"></span>
+		<span  class="title"><font color="#FF0000" ><%= error_message_on :event, :event_title %></font></span>
+		<span class="spacer"></span>
+        <span><b>Location:</b></span>
+        <span class="spacer"></span>
+        <span><input type="text" name="event[event_location]" id="location" /></span>
+		<span class="spacer"></span>
+        <span  class="title" ><font color="#FF0000" ><%= error_message_on :event, :event_location %></font></span>
+		<span class="spacer"></span>
+		<span><b>Please Enter an URL to get More Details about the Event (URL):</b></span>
+        <span class="spacer"></span>
+        <span><input type="text" name="event[url]" /><span>
+        <span class="spacer"></span>
+		<span  class="title"><font color="#FF0000" ><%= error_message_on :event, :url %></font></span>
+        <span class="spacer"></span>
+        <span><b>Description:</b></span>
+        <span class="spacer"></span>
+        <span><textarea name="event[event_description]" id="desc" ></textarea><span>
+        <span class="spacer"></span>
+		<span  class="title"><font color="#FF0000" ><%= error_message_on :event, :event_description %></font></span>
+        <span class="spacer"></span>
+	
+        
+        <span><input class="submit" type="submit" value="Suggest Event"></span>
+        </form>
+      </div>
+     
+       
